@@ -1,0 +1,15 @@
+# General
+node_modules/
+package-lock.json
+
+# Build outputs
+dist
+storybook-static
+*.tgz
+*bundle-analysis.html
+
+# Dev files
+debug.log
+
+# Test files
+coverage
