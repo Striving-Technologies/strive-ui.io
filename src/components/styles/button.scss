@@ -1,0 +1,159 @@
+@mixin stc__button {
+  .stc-button {
+    background: none;
+    border: solid 1px var(--st-secondary-color);
+    border-radius: var(--st-border-radius);
+    color: var(--st-text-color);
+    cursor: pointer;
+    display: inline-block;
+    font-size: var(--st-font-size--st-m);
+    margin: 0;
+    padding: var(--st-spacing-s) var(--st-spacing-m);
+    text-decoration: none;
+    transition: var(--st-transition);
+    outline: none;
+    position: relative;
+
+    /* Hover */
+    &:hover {
+      border-color: var(--st-primary-color);
+      color: var(--st-primary-color);
+      box-shadow: var(--st-box-shadow);
+    }
+
+    /* Disabled */
+    &:disabled {
+      background-color: var(--st-disabled-bg-color);
+      border-color: var(--st-disabled-bg-color);
+      color: var(--st-disabled-text-color);
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    /* Handle variants */
+    &.stc-button-var--primary {
+      background: var(--st-primary-color);
+      border-color: var(--st-primary-color);
+      color: var(--st-text-color--primary);
+
+      &:hover {
+        background-color: color-mix(
+          in srgb,
+          var(--st-primary-color) 80%,
+          #fff 20%
+        );
+        border-color: color-mix(in srgb, var(--st-primary-color) 80%, #fff 20%);
+        color: var(--st-text-color--primary);
+      }
+
+      &:active {
+        background-color: color-mix(
+          in srgb,
+          var(--st-primary-color) 95%,
+          #000 5%
+        );
+      }
+
+      &:disabled {
+        background-color: var(--st-disabled-bg-color--primary);
+        border-color: var(--st-disabled-bg-color--primary);
+        color: var(--st-disabled-text-color--primary);
+      }
+    }
+
+    &.stc-button-var--dashed {
+      border-style: dashed;
+
+      &:active {
+        color: color-mix(in srgb, var(--st-primary-color) 95%, #000 5%);
+      }
+    }
+
+    &.stc-button-var--link {
+      border: none;
+      color: var(--st-text-color--link);
+
+      &:hover {
+        color: color-mix(in srgb, var(--st-primary-color) 80%, #fff 20%);
+      }
+
+      &:active {
+        color: color-mix(in srgb, var(--st-primary-color) 95%, #000 5%);
+      }
+    }
+
+    &.stc-button-var--text {
+      border: none;
+      color: var(--st-text-color);
+
+      &:hover {
+        color: color-mix(in srgb, var(--st-text-color) 80%, #fff 20%);
+      }
+
+      &:active {
+        color: color-mix(in srgb, var(--st-text-color) 95%, #000 5%);
+      }
+    }
+
+    /* Handle sizes */
+    &.stc-button-size--small {
+      font-size: var(--st-font-size-s);
+      padding: calc(0.6 * var(--st-spacing-s)) calc(0.6 * var(--st-spacing-m));
+    }
+
+    &.stc-button-size--large {
+      font-size: var(--st-font-size-l);
+      padding: var(--st-spacing-m) var(--st-spacing-l);
+    }
+
+    /* Handle shapes */
+    &.stc-button-shape--circle {
+      border-radius: 100%;
+    }
+
+    &.stc-button-shape--round {
+      border-radius: calc(2 * var(--st-spacing-m));
+
+      &.stc-button-size--small {
+        border-radius: calc(2 * var(--st-spacing-s));
+      }
+
+      &.stc-button-size--large {
+        border-radius: calc(2 * var(--st-spacing-l));
+      }
+    }
+
+    .stc-button__loader {
+      display: none;
+    }
+
+    &.stc-button__loader--left {
+      .stc-button__loader {
+        padding-right: var(--st-spacing-l);
+      }
+    }
+
+    &.stc-button__loader--right {
+      .stc-button__loader {
+        padding-left: var(--st-spacing-l);
+        transition: var(--st-transition);
+      }
+    }
+
+    /* Handle loading */
+    &.stc-button--loading {
+      cursor: wait;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .stc-button__loader {
+        display: flex;
+        align-items: center;
+        opacity: 1;
+        width: auto;
+        position: static;
+      }
+    }
+  }
+}
