@@ -1,0 +1,104 @@
+@mixin stc__spinner {
+  .stc-spinner {
+    margin-bottom: -0.1rem;
+
+    svg {
+      --stroke-width: 10;
+      --radius: 40;
+      background: none;
+      animation: spin 1s linear infinite;
+      width: var(--font-size);
+      height: auto;
+    }
+
+    /* Handle sizes */
+    &[data-size="small"] {
+      width: calc(0.6 * var(--font-size));
+
+      svg {
+        --stroke-width: 7;
+        --radius: 30;
+      }
+    }
+
+    &[data-size="large"] {
+      width: calc(1.4 * var(--font-size));
+
+      svg {
+        --stroke-width: 13;
+        --radius: 55;
+      }
+    }
+
+    &[data-spin-speed="1"] {
+      svg {
+        animation: spin calc(5 / 1) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="2"] {
+      svg {
+        animation: spin calc(5 / 2) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="3"] {
+      svg {
+        animation: spin calc(5 / 3) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="4"] {
+      svg {
+        animation: spin calc(5 / 4) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="5"] {
+      svg {
+        animation: spin 1s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="6"] {
+      svg {
+        animation: spin calc(5 / 6) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="7"] {
+      svg {
+        animation: spin calc(5 / 7) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="8"] {
+      svg {
+        animation: spin calc(5 / 8) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="9"] {
+      svg {
+        animation: spin calc(5 / 9) + s linear infinite;
+      }
+    }
+
+    &[data-spin-speed="10"] {
+      svg {
+        animation: spin 0.5s linear infinite;
+      }
+    }
+
+    @keyframes spin {
+      from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+      }
+    }
+  }
+}
