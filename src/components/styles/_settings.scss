@@ -1,0 +1,37 @@
+:root {
+  /* Seed variables */
+  --st-primary-color: #883199; // Primary color in the design system
+  --st-secondary-color: #d7d7d7; // Secondary color in the design system
+  --st-dark-color: #000; // Dark color in the design system
+  --st-light-color: #fff; // Light color in the design system
+  --st-text-color: #000; // The default text color
+  --st-text-color--primary: #fff; // The default text color for when over a primary background
+  --st-disabled-bg-color: #d7d7d7; // The default disabled background color
+  --st-disabled-text-color: #a7a7a7; // The default disabled text color
+  --st-disabled-bg-color--primary: #a7a7a7; // The default disabled background color for when over a primary background
+  --st-disabled-text-color--primary: #fff; // The default disabled text color for when over a primary background
+  --st-font-size: 1rem; // The default font size
+  --st-spacing: 0.6rem; // The default spacing (padding, margin, etc.)
+  --st-transition: all 0.3s linear; // The default transition
+  --st-border-radius: 0.25rem; // The default border radius
+  --st-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.15); // Box shadow offset
+  --st-stroke-width: 10;
+  --st-radius: 40;
+  --st-loader-width: 1rem;
+
+  /* Derived variables */
+  --st-text-color--link: var(
+    --primary-color
+  ); // The default text color for links
+  --st-font-size--s: calc(
+    0.9 * var(--st-font-size)
+  ); // The default small font size
+  --st-font-size--m: var(--st-font-size); // The default medium font size
+  --st-font-size--l: calc(
+    1.1 * var(--st-font-size)
+  ); // The default large font size
+  --st-spacing-s: calc(0.5 * var(--st-spacing)); // The default small spacing
+  --st-spacing-m: var(--st-spacing); // The default medium spacing
+  --st-spacing-l: calc(1.1 * var(--st-spacing)); // The default large spacing
+  --st-box-shadow: var(--st-shadow), var(--st-shadow), var(--st-shadow); // Box shadow configuration for all components
+}
