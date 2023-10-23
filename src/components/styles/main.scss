@@ -1,0 +1,7 @@
+@import "button"; /* Path: src/components/styles/button.scss */
+@import "spinner"; /* Path: src/components/styles/spinner.scss */
+
+@mixin striveui {
+  @include stc__button;
+  @include stc__spinner;
+}
