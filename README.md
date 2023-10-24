@@ -63,4 +63,4 @@ Please follow the guidelines outlined below for contributions.
 
 ## 🤝 Contribution
 
-There are tons of ways you can contribute, and we're happy to accept all. Please checkout our [guide to contributing here](https://github.com/Striving-Technologies/strive-ui.io/.github/blob/main/contributing.md). We can't wait to see what you've got for us.
+There are tons of ways you can contribute, and we're happy to accept all. Please checkout our [guide to contributing here](https://github.com/Striving-Technologies/strive-ui.io/blob/main/.github/contributing.md). We can't wait to see what you've got for us.
