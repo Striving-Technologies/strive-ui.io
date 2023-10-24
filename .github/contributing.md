@@ -1,6 +1,6 @@
 ## 🤝 Contribution
 
-In this guide we till provide you with all the relevant information for making contributions to this project.
+In this guide we will provide you with all the relevant information for making contributions to this project.
 
 ### Types of Contributions
 
@@ -28,7 +28,8 @@ In this guide we till provide you with all the relevant information for making c
 - Limit your subject line to 69 characters as GitHub will truncates subjects more than 70 characters.
 - Use imperative, present tense: "change" not "changed" nor "changes"
 - Don't use GitHub's magic words in your commits to close issues - do that in the pull request body instead.
-  Read [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) guide before creating your first commit.
+
+Read [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) guide before creating your first commit.
 
 #### Making pull requests
 
