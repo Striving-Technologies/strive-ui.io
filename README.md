@@ -25,11 +25,11 @@ A robust UI library that gives you the ability to build out your own design syst
 ## 🎁 Install
 
 ```bash
-npm install @stritech/strive-ui
+$ npm install @stritech/strive-ui
 ```
 
 ```bash
-yarn add @stritech/strive-ui
+$ yarn add @stritech/strive-ui
 ```
 
 ## 🔨 Usage
@@ -47,7 +47,7 @@ const App = () => (
 
 ## ⌨️ Development
 
-Clone locally:
+##### Clone and run locally
 
 ```bash
 $ git clone git@github.com:Striving-Technologies/strive-ui.io.git
@@ -59,7 +59,21 @@ $ npm run storybook
 A new tab should automatically open in the browser on port [`6006`](http://localhost:6006), if not,
 open your browser and visit http://127.0.0.1:6006 or http://localhost:6006.
 
-Please follow the guidelines outlined below for contributions.
+##### Testing locally (in a separate project)
+
+In the Strive UI directory run:
+
+```bash
+$ npm link
+```
+
+Navigate to the application you want to use for the test and run:
+
+```bash
+$ npm link @stritech/strive-ui
+```
+
+You should now be able to import and use components as shown [above](#-usage).
 
 ## 🤝 Contribution
 
