@@ -35,12 +35,26 @@ const Button = ({
 
   const renderLoadingIcon = () => {
     if (loadingIcon) {
-      return <span className="stc-button__loader">{loadingIcon}</span>;
+      return (
+        <span
+          className="stc-button__loader"
+          aria-hidden={!loading}
+        >
+          {loadingIcon}
+        </span>
+      );
     }
 
     return (
-      <span className="stc-button__loader">
-        <Spinner {...{ size: size, ...loadingIconProps }} />
+      <span
+        className="stc-button__loader"
+        hidden={!loading}
+      >
+        <Spinner
+          size={size}
+          loadingPrefix="loading:"
+          {...loadingIconProps}
+        />
       </span>
     );
   };
@@ -63,6 +77,7 @@ const Button = ({
         onClick && onClick(e);
       }}
       disabled={disabled}
+      aria-disabled={disabled || loading}
       {...rest}
     >
       {showLeftLoader && renderLoadingIcon()}
