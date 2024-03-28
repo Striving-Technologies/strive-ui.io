@@ -19,7 +19,7 @@ const Spinner = ({ size = "medium", spinSpeed = 5 }: SpinnerProps) => {
           fill="none"
           stroke="currentColor"
           strokeWidth="var(--stroke-width)"
-          r="45"
+          r="40"
           strokeDasharray="164.93361431346415 56.97787143782138"
           transform="rotate(159.821 50 50)"
         ></circle>
