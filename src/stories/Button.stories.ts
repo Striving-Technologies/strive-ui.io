@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "../components/Button";
+import { InfoIcon } from "../utils/icons/info";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -15,7 +16,6 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     children: {
-      control: "object",
       description: "Button content. This can be text or a Node",
       defaultValue: "Click me",
       options: ["ReactNode"],
@@ -28,7 +28,7 @@ const meta = {
     shape: {
       control: "text",
       description: "Button shape. This can be:",
-      options: ["circle", "round"],
+      options: ["circle", "pill"],
     },
     disabled: {
       control: "boolean",
@@ -51,7 +51,7 @@ const meta = {
       options: ["ReactNode"],
     },
     loadingIconPosition: {
-      control: "text",
+      control: "radio",
       description: "The position of the loading icon. This can be:",
       options: ["left", "right"],
     },
@@ -61,19 +61,19 @@ const meta = {
         "These are the props for the loading icon. These are only applied if the default loading icon is used. Checkout SpinnerProps",
     },
     size: {
-      control: "text",
+      control: "radio",
       description: "The size of the button. This can be:",
       options: ["small", "medium", "large"],
     },
     href: {
       control: "text",
       description:
-        "The href for the button. If this is provided, the button will be rendered as an <a> tag",
+        "The href for the button. If this is provided, the button will be wrapped with an <a> tag",
     },
     anchorProps: {
       control: "object",
       description:
-        "Additional props to be passed to the <a> tag if the href prop is provided",
+        "Additional AnchorHTML props to be passed to the <a> tag if the href prop is provided",
     },
   },
 } satisfies Meta<typeof Button>;
@@ -117,10 +117,10 @@ export const Circle: Story = {
   },
 } satisfies Story;
 
-export const Round: Story = {
+export const Pill: Story = {
   args: {
-    shape: "round",
-    children: "Round Button",
+    shape: "pill",
+    children: "Pill Button",
   },
 } satisfies Story;
 
@@ -162,5 +162,12 @@ export const Loading: Story = {
     loading: true,
     loadingIconPosition: "right",
     children: "Loading Button",
+  },
+} satisfies Story;
+
+export const Icon: Story = {
+  args: {
+    icon: InfoIcon(),
+    children: "Button with Icon",
   },
 } satisfies Story;

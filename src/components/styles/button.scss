@@ -1,109 +1,276 @@
 @mixin stc__button {
+  /* Button */
   .stc-button {
+    /* Variables */
+    /* Padding variables */
+    --stc-button--padding-x: var(--stc-spacing-m);
+    --stc-button--padding-y: var(--stc-spacing-s);
+
+    /* Border radius variables */
+    --stc-button--border-radius: var(--stc-border-radius);
+
+    /* Box shadow variables */
+    --stc-button--box-shadow: var(--stc-box-shadow);
+
+    /* Disabled background color variables */
+    --stc-button--disabled-bg-color: var(--stc-disabled-bg-color);
+    --stc-button--disabled-bg-color--primary: var(
+      --stc-disabled-bg-color--primary
+    );
+
+    /* Disabled text color variables */
+    --stc-button--disabled-text-color: var(--stc-disabled-text-color);
+    --stc-button--disabled-text-color--primary: var(
+      --stc-disabled-text-color--primary
+    );
+
+    /* Text color variables */
+    --stc-button--text-color: var(--stc-text-color);
+
+    /* Danger color */
+    --stc-button--danger-color-values: var(--stc-danger-color--values);
+    --stc-button--danger-color: rgb(var(--stc-button--danger-color-values));
+    --stc-button--disabled-bg-color--danger: var(--stc-button--danger-color);
+    --stc-button--disabled-text-color--danger: var(--stc-button--danger-color);
+    --stc-button-shadow--danger: 0px 0px 4px 0px
+      rgba(var(--stc-button--danger-color-values), 0.2);
+    --stc-button-box-shadow--danger: var(--stc-button-shadow--danger),
+      var(--stc-button-shadow--danger), var(--stc-button-shadow--danger);
+
+    /* Transition variables */
+    --stc-button--transition: var(--stc-transition);
+
+    /* Button styles */
     background: none;
-    border: solid 1px var(--st-secondary-color);
-    border-radius: var(--st-border-radius);
-    color: var(--st-text-color);
+    border: solid 1px var(--stc-secondary-color);
+    border-radius: var(--stc-border-radius);
+    color: var(--stc-button--text-color);
     cursor: pointer;
     display: inline-block;
-    font-size: var(--st-font-size--st-m);
+    font-size: var(--stc-font-size-m);
     margin: 0;
-    padding: var(--st-spacing-s) var(--st-spacing-m);
-    text-decoration: none;
-    transition: var(--st-transition);
-    outline: none;
+    padding: var(--stc-button--padding-y) var(--stc-button--padding-x);
+    text-decoration: transparent;
+    transition: var(--stc-button--transition);
+    outline: transparent;
     position: relative;
 
     /* Hover */
     &:hover {
-      border-color: var(--st-primary-color);
-      color: var(--st-primary-color);
-      box-shadow: var(--st-box-shadow);
+      border-color: var(--stc-primary-color);
+      color: var(--stc-primary-color);
+      box-shadow: var(--stc-box-shadow);
     }
 
     /* Disabled */
     &:disabled {
-      background-color: var(--st-disabled-bg-color);
-      border-color: var(--st-disabled-bg-color);
-      color: var(--st-disabled-text-color);
+      background-color: var(--stc-disabled-bg-color);
+      border-color: var(--stc-secondary-color);
+      color: var(--stc-disabled-text-color);
       cursor: not-allowed;
       opacity: 0.5;
+      box-shadow: none;
     }
 
     /* Handle variants */
     &.stc-button-var--primary {
-      background: var(--st-primary-color);
-      border-color: var(--st-primary-color);
-      color: var(--st-text-color--primary);
+      background: var(--stc-primary-color);
+      border-color: var(--stc-primary-color);
+      color: var(--stc-text-color--primary);
 
       &:hover {
         background-color: color-mix(
           in srgb,
-          var(--st-primary-color) 80%,
+          var(--stc-primary-color) 80%,
           #fff 20%
         );
-        border-color: color-mix(in srgb, var(--st-primary-color) 80%, #fff 20%);
-        color: var(--st-text-color--primary);
+        border-color: color-mix(
+          in srgb,
+          var(--stc-primary-color) 80%,
+          #fff 20%
+        );
+        color: var(--stc-text-color--primary);
       }
 
       &:active {
         background-color: color-mix(
           in srgb,
-          var(--st-primary-color) 95%,
+          var(--stc-primary-color) 95%,
           #000 5%
         );
       }
 
       &:disabled {
-        background-color: var(--st-disabled-bg-color--primary);
-        border-color: var(--st-disabled-bg-color--primary);
-        color: var(--st-disabled-text-color--primary);
+        background-color: var(--stc-disabled-bg-color--primary);
+        border-color: var(--stc-disabled-bg-color--primary);
+        color: var(--stc-disabled-text-color--primary);
+      }
+
+      /* Primary and Danger styles */
+      &.stc-button--danger {
+        background: var(--stc-button--danger-color);
+        color: var(--stc-text-color--primary);
+
+        &:hover {
+          border-color: color-mix(
+            in srgb,
+            var(--stc-button--danger-color) 80%,
+            #fff 20%
+          );
+          background: color-mix(
+            in srgb,
+            var(--stc-button--danger-color) 80%,
+            #fff 20%
+          );
+          color: var(--stc-text-color--primary);
+        }
+
+        &:active {
+          border-color: color-mix(
+            in srgb,
+            var(--stc-button--danger-color) 95%,
+            #000 20%
+          );
+          background: color-mix(
+            in srgb,
+            var(--stc-button--danger-color) 95%,
+            #000 20%
+          );
+          color: var(--stc-text-color--primary);
+        }
       }
     }
 
     &.stc-button-var--dashed {
       border-style: dashed;
 
+      &:hover {
+        box-shadow: none;
+      }
+
       &:active {
-        color: color-mix(in srgb, var(--st-primary-color) 95%, #000 5%);
+        color: color-mix(in srgb, var(--stc-primary-color) 95%, #000 5%);
+      }
+
+      &:disabled {
+        border-color: var(--stc-secondary-color);
+      }
+
+      &.stc-button--danger {
+        box-shadow: none;
+
+        &:hover {
+          box-shadow: none;
+        }
       }
     }
 
     &.stc-button-var--link {
       border: none;
-      color: var(--st-text-color--link);
+      color: var(--stc-text-color--link);
 
       &:hover {
-        color: color-mix(in srgb, var(--st-primary-color) 80%, #fff 20%);
+        box-shadow: none;
+        color: color-mix(in srgb, var(--stc-primary-color) 80%, #fff 20%);
       }
 
       &:active {
-        color: color-mix(in srgb, var(--st-primary-color) 95%, #000 5%);
+        color: color-mix(in srgb, var(--stc-primary-color) 95%, #000 5%);
+      }
+
+      &:disabled {
+        background: none;
+      }
+
+      &.stc-button--danger {
+        box-shadow: none;
+
+        &:hover {
+          box-shadow: none;
+        }
       }
     }
 
     &.stc-button-var--text {
       border: none;
-      color: var(--st-text-color);
+      color: var(--stc-button--text-color);
 
       &:hover {
-        color: color-mix(in srgb, var(--st-text-color) 80%, #fff 20%);
+        background-color: color-mix(
+          in srgb,
+          var(--stc-secondary-color) 50%,
+          #fff 50%
+        );
+        box-shadow: none;
+        color: color-mix(in srgb, var(--stc-button--text-color) 80%, #fff 20%);
       }
 
       &:active {
-        color: color-mix(in srgb, var(--st-text-color) 95%, #000 5%);
+        color: color-mix(in srgb, var(--stc-button--text-color) 95%, #000 5%);
+      }
+
+      &:disabled {
+        background: none;
+        color: var(--stc-disabled-text-color);
+      }
+
+      &.stc-button--danger {
+        box-shadow: none;
+
+        &:hover {
+          box-shadow: none;
+        }
+      }
+    }
+
+    /* Handle danger */
+    &.stc-button--danger {
+      border-color: var(--stc-button--danger-color);
+      color: var(--stc-button--danger-color);
+
+      &:hover {
+        border-color: color-mix(
+          in srgb,
+          var(--stc-button--danger-color) 80%,
+          #fff 20%
+        );
+        color: color-mix(
+          in srgb,
+          var(--stc-button--danger-color) 80%,
+          #fff 20%
+        );
+        box-shadow: var(--stc-button-box-shadow--danger);
+      }
+
+      &:active {
+        border-color: color-mix(
+          in srgb,
+          var(--stc-button--danger-color) 95%,
+          #000 20%
+        );
+        color: color-mix(
+          in srgb,
+          var(--stc-button--danger-color) 95%,
+          #000 20%
+        );
+      }
+
+      &:disabled {
+        box-shadow: none;
+        border-color: var(--stc-button--disabled-bg-color--danger);
       }
     }
 
     /* Handle sizes */
     &.stc-button-size--small {
-      font-size: var(--st-font-size-s);
-      padding: calc(0.6 * var(--st-spacing-s)) calc(0.6 * var(--st-spacing-m));
+      font-size: var(--stc-font-size-s);
+      padding: calc(0.5 * var(--stc-spacing-s)) calc(0.6 * var(--stc-spacing-m));
     }
 
     &.stc-button-size--large {
-      font-size: var(--st-font-size-l);
-      padding: var(--st-spacing-m) var(--st-spacing-l);
+      font-size: var(--stc-font-size-l);
+      padding: calc(1.2 * var(--stc-button--padding-y))
+        calc(1.2 * var(--stc-button--padding-x));
     }
 
     /* Handle shapes */
@@ -111,48 +278,65 @@
       border-radius: 100%;
     }
 
-    &.stc-button-shape--round {
-      border-radius: calc(2 * var(--st-spacing-m));
+    &.stc-button-shape--pill {
+      border-radius: calc(2 * var(--stc-spacing-m));
 
       &.stc-button-size--small {
-        border-radius: calc(2 * var(--st-spacing-s));
+        border-radius: calc(2 * var(--stc-spacing-s));
       }
 
       &.stc-button-size--large {
-        border-radius: calc(2 * var(--st-spacing-l));
-      }
-    }
-
-    .stc-button__loader {
-      display: none;
-    }
-
-    &.stc-button__loader--left {
-      .stc-button__loader {
-        padding-right: var(--st-spacing-l);
-      }
-    }
-
-    &.stc-button__loader--right {
-      .stc-button__loader {
-        padding-left: var(--st-spacing-l);
-        transition: var(--st-transition);
+        border-radius: calc(2 * var(--stc-spacing-l));
       }
     }
 
     /* Handle loading */
+    .stc-button__loader {
+      display: inline-flex;
+      opacity: 0;
+      width: 0;
+      padding: 0;
+      transition: var(--stc-button--transition);
+      vertical-align: middle;
+      overflow: hidden;
+    }
+
     &.stc-button--loading {
       cursor: wait;
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
       .stc-button__loader {
-        display: flex;
-        align-items: center;
         opacity: 1;
         width: auto;
-        position: static;
+      }
+
+      &.stc-button__loader--left {
+        .stc-button__loader {
+          padding-right: var(--stc-spacing-l);
+        }
+      }
+
+      &.stc-button__loader--right {
+        .stc-button__loader {
+          padding-left: var(--stc-spacing-l);
+        }
+      }
+    }
+
+    /* Handle icons */
+    .stc-button__icon {
+      display: inline-flex;
+      vertical-align: middle;
+    }
+
+    &.stc-button__icon--left {
+      .stc-button__icon {
+        padding-right: var(--stc-spacing);
+      }
+    }
+
+    &.stc-button__icon--right {
+      .stc-button__icon {
+        padding-left: var(--stc-spacing);
       }
     }
   }

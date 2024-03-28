@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { MouseEvent } from "react";
 import { Spinner } from "../Spinner";
-import { ButtonLoadingIconPositionType, ButtonProps } from "./Button.types";
+import { ButtonProps } from "./Button.types";
 
 const Button = ({
   variant = undefined,
@@ -10,6 +10,9 @@ const Button = ({
   disabled = false,
   children,
   className = "",
+  danger = false,
+  icon = undefined,
+  iconPosition = "left",
   loading = false,
   loadingIconPosition = "left",
   loadingIcon = undefined,
@@ -19,30 +22,35 @@ const Button = ({
   anchorProps,
   ...rest
 }: ButtonProps) => {
-  const renderLoadingIcon = (position: ButtonLoadingIconPositionType) => {
-    if (loading && position === loadingIconPosition) {
-      if (loadingIcon) {
-        return <span className="stc-button__loader">{loadingIcon}</span>;
-      }
-
-      return (
-        <span className="stc-button__loader">
-          <Spinner {...loadingIconProps} />
-        </span>
-      );
-    }
-
-    return null;
-  };
-
   const generatedClasses = classNames({
     "stc-button": true,
     [`stc-button-var--${variant}`]: variant,
     [`stc-button-size--${size}`]: size !== "medium" && size,
     [`stc-button-shape--${shape}`]: shape,
+    [`stc-button--danger`]: danger,
     [`stc-button--loading`]: loading,
     [`stc-button__loader--${loadingIconPosition}`]: loadingIconPosition,
+    [`stc-button__icon--${iconPosition}`]: iconPosition,
   });
+
+  const renderLoadingIcon = () => {
+    if (loadingIcon) {
+      return <span className="stc-button__loader">{loadingIcon}</span>;
+    }
+
+    return (
+      <span className="stc-button__loader">
+        <Spinner {...{ size: size, ...loadingIconProps }} />
+      </span>
+    );
+  };
+
+  const showLeftLoader = loadingIconPosition === "left";
+  const showRightLoader = loadingIconPosition === "right";
+  const showRightIcon = iconPosition === "right" && icon;
+  const showLeftIcon = iconPosition === "left" && icon;
+
+  const Icon = icon ? <span className="stc-button__icon">{icon}</span> : null;
 
   const ButtonGenerated = (
     <button
@@ -57,13 +65,15 @@ const Button = ({
       disabled={disabled}
       {...rest}
     >
-      {renderLoadingIcon("left")}
+      {showLeftLoader && renderLoadingIcon()}
+      {showLeftIcon && Icon}
       {children}
-      {renderLoadingIcon("right")}
+      {showRightIcon && Icon}
+      {showRightLoader && renderLoadingIcon()}
     </button>
   );
 
-  if (href) {
+  if (href && variant === "link") {
     return (
       <a
         href={href}

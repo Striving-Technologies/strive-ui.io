@@ -1,37 +1,52 @@
 :root {
   /* Seed variables */
-  --st-primary-color: #883199; // Primary color in the design system
-  --st-secondary-color: #d7d7d7; // Secondary color in the design system
-  --st-dark-color: #000; // Dark color in the design system
-  --st-light-color: #fff; // Light color in the design system
-  --st-text-color: #000; // The default text color
-  --st-text-color--primary: #fff; // The default text color for when over a primary background
-  --st-disabled-bg-color: #d7d7d7; // The default disabled background color
-  --st-disabled-text-color: #a7a7a7; // The default disabled text color
-  --st-disabled-bg-color--primary: #a7a7a7; // The default disabled background color for when over a primary background
-  --st-disabled-text-color--primary: #fff; // The default disabled text color for when over a primary background
-  --st-font-size: 1rem; // The default font size
-  --st-spacing: 0.6rem; // The default spacing (padding, margin, etc.)
-  --st-transition: all 0.3s linear; // The default transition
-  --st-border-radius: 0.25rem; // The default border radius
-  --st-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.15); // Box shadow offset
-  --st-stroke-width: 10;
-  --st-radius: 40;
-  --st-loader-width: 1rem;
+  --stc-primary-color--values: 242, 105, 46; // Primary color RGB in the design system
+  --stc-primary-color: rgb(
+    var(--stc-primary-color--values)
+  ); // Primary color in the design system
+  --stc-secondary-color: #d7d7d7; // Secondary color in the design system
+  --stc-text-color: #000; // The default text color
+  --stc-text-color--primary: #fff; // The default text color for when over a primary background
+  --stc-disabled-bg-color: #f0efef; // The default disabled background color
+  --stc-disabled-text-color: #a7a7a7; // The default disabled text color
+  --stc-disabled-bg-color--primary: #a7a7a7; // The default disabled background color for when over a primary background
+  --stc-disabled-text-color--primary: #fff; // The default disabled text color for when over a primary background
+  --stc-danger-color--values: 210, 43, 43; // Danger color RGB values in the design system
+  --stc-danger-color: rgb(
+    var(--stc-danger-color--values)
+  ); // Danger color in the design system
+  --stc-font-size: 1rem; // The default font size
+  --stc-spacing: 0.5rem; // The default spacing (padding, margin, etc.)
+  --stc-transition: all 0.3s linear; // The default transition
+  --stc-border-radius: 0.25rem; // The default border radius
+  --stc-shadow: 0px 0px 4px 0px rgba(var(--stc-primary-color--values), 0.2); // Box shadow offset
+  --stc-stroke-width: 10;
+  --stc-radius: 40;
+  --stc-loader-width: 1rem;
 
   /* Derived variables */
-  --st-text-color--link: var(
-    --primary-color
+  --stc-text-color--link: var(
+    --stc-primary-color
   ); // The default text color for links
-  --st-font-size--s: calc(
-    0.9 * var(--st-font-size)
+  --stc-font-size-s: calc(
+    0.8 * var(--stc-font-size)
   ); // The default small font size
-  --st-font-size--m: var(--st-font-size); // The default medium font size
-  --st-font-size--l: calc(
-    1.1 * var(--st-font-size)
+  --stc-font-size-m: var(--stc-font-size); // The default medium font size
+  --stc-font-size-l: calc(
+    1.2 * var(--stc-font-size)
   ); // The default large font size
-  --st-spacing-s: calc(0.5 * var(--st-spacing)); // The default small spacing
-  --st-spacing-m: var(--st-spacing); // The default medium spacing
-  --st-spacing-l: calc(1.1 * var(--st-spacing)); // The default large spacing
-  --st-box-shadow: var(--st-shadow), var(--st-shadow), var(--st-shadow); // Box shadow configuration for all components
+  --stc-spacing-s: calc(0.5 * var(--stc-spacing)); // The default small spacing
+  --stc-spacing-m: var(--stc-spacing); // The default medium spacing
+  --stc-spacing-l: calc(1.5 * var(--stc-spacing)); // The default large spacing
+  --stc-box-shadow: var(--stc-shadow), var(--stc-shadow), var(--stc-shadow); // Box shadow configuration for all components
+}
+
+.stc--dark {
+  --stc-secondary-color: #525252; // Secondary color in the design system
+  --stc-text-color: #fff; // The default text color
+  --stc-text-color--primary: #fff; // The default text color for when over a primary background
+  --stc-disabled-bg-color: #f0efef; // The default disabled background color
+  --stc-disabled-text-color: #a7a7a7; // The default disabled text color
+  --stc-disabled-bg-color--primary: #a7a7a7; // The default disabled background color for when over a primary background
+  --stc-disabled-text-color--primary: #fff; // The default disabled text color for when over a primary background
 }
