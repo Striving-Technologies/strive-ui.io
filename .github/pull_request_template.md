@@ -1,14 +1,8 @@
-<!--- Provide a general summary of your changes in the Title above -->
-
 ## Done / Description
 
-<!-- Describe in great detail what this PR does -->
+<!-- Describe what this PR does -->
 
 [List of work items including drive-bys]
-
-## Motivation and Context
-
-<!--- Why is this change required? What problem does it solve? -->
 
 ## QA
 
