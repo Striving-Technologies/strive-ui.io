@@ -7,9 +7,13 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { getFiles } from "./utils/getFiles";
 
 const extensions = [".ts", ".tsx"];
+const excludeExtensions = [".d.ts", ".test.ts", ".spec.ts"];
 
 export default {
-  input: ["./src/index.ts", ...getFiles("./src/components", extensions)],
+  input: [
+    "./src/index.ts",
+    ...getFiles("./src/components", extensions, excludeExtensions),
+  ],
   output: {
     dir: "dist",
     format: "esm",
