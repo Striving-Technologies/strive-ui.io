@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { MouseEvent } from "react";
 import { Spinner } from "../Spinner";
 import { ButtonProps } from "./Button.types";
 
@@ -69,13 +68,7 @@ const Button = ({
   const ButtonGenerated = (
     <button
       className={`${generatedClasses}${className ? ` ${className}` : ""}`}
-      onClick={(e: MouseEvent<HTMLButtonElement>) => {
-        if (disabled) {
-          e.preventDefault();
-          return;
-        }
-        onClick && onClick(e);
-      }}
+      onClick={onClick}
       disabled={disabled}
       aria-disabled={disabled || loading}
       {...rest}
