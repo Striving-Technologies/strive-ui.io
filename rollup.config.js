@@ -7,7 +7,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { getFiles } from "./utils/getFiles";
 
 const extensions = [".ts", ".tsx"];
-const excludeExtensions = [".d.ts", ".test.ts", ".spec.ts"];
+const excludeExtensions = [".d.ts", ".test.tsx", ".spec.tsx"];
 
 const files = getFiles("./src/components", extensions, excludeExtensions);
 
@@ -24,7 +24,7 @@ export default {
     resolve(),
     commonjs(),
     typescript({
-      tsconfig: "./tsconfig.json",
+      tsconfig: "./tsconfig.build.json",
       declaration: true,
       declarationDir: "dist",
     }),
@@ -34,5 +34,12 @@ export default {
       filename: "bundle-analysis.html",
     }),
   ],
-  external: [/node_modules/],
+  external: [
+    "react",
+    "react-dom",
+    "classnames",
+    "prop-types",
+    "react/jsx-runtime",
+    "tslib",
+  ],
 };
