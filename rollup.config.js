@@ -9,11 +9,10 @@ import { getFiles } from "./utils/getFiles";
 const extensions = [".ts", ".tsx"];
 const excludeExtensions = [".d.ts", ".test.ts", ".spec.ts"];
 
+const files = getFiles("./src/components", extensions, excludeExtensions);
+
 export default {
-  input: [
-    "./src/index.ts",
-    ...getFiles("./src/components", extensions, excludeExtensions),
-  ],
+  input: ["./src/index.ts", ...files],
   output: {
     dir: "dist",
     format: "esm",
@@ -35,5 +34,5 @@ export default {
       filename: "bundle-analysis.html",
     }),
   ],
-  external: ["react", "react-dom"],
+  external: [/node_modules/],
 };
