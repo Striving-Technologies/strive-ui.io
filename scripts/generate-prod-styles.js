@@ -13,7 +13,7 @@ const buildStyles = async () => {
 
   const files = await globby(styleRoutes, {});
 
-  const buildDirectory = path.join(rootPath, "dist", "components", "styles");
+  const buildDirectory = path.join(rootPath, "dist", "styles");
 
   // clean up dist/styles directory before generating new styles
   fs.rmSync(buildDirectory, {
