@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { SpinnerProps } from "../Spinner";
 
 export type ButtonIconPositionType = "left" | "right";
@@ -6,7 +6,7 @@ export type ButtonSizeType = "small" | "medium" | "large";
 export type ButtonVariantType = "primary" | "dashed" | "link" | "text";
 export type ButtonShapeType = "circle" | "pill";
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: ReactNode;
   variant?: ButtonVariantType;
   shape?: ButtonShapeType;
@@ -21,4 +21,4 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   size?: ButtonSizeType;
   href?: string;
   anchorProps?: AnchorHTMLAttributes<HTMLAnchorElement>;
-}
+};
