@@ -1,0 +1,72 @@
+@mixin stc__input {
+  .stc-input {
+    /* Variables */
+    /* Padding variables */
+    --stc-input--padding: var(--stc-spacing-m);
+
+    /* Border radius variables */
+    --stc-input--border-radius: var(--stc-border-radius);
+
+    /* Box shadow variables */
+    --stc-input--box-shadow: var(--stc-box-shadow);
+
+    /* Disabled background color variables */
+    --stc-input--disabled-bg-color: var(--stc-disabled-bg-color);
+
+    /* Disabled text color variables */
+    --stc-input--disabled-text-color: var(--stc-disabled-text-color);
+
+    /* Text color variables */
+    --stc-input--text-color: var(--stc-text-color);
+
+    /* Transition variables */
+    --stc-input--transition: var(--stc-transition);
+
+    background: none;
+    border: solid 1px var(--stc-secondary-color);
+    border-radius: var(--stc-input--border-radius);
+    color: var(--stc-input--text-color);
+    display: inline-block;
+    font-size: var(--stc-font-size--stc-m);
+    margin: 0;
+    padding: var(--stc-input--padding);
+    transition: var(--stc-transition);
+    outline: none;
+    position: relative;
+
+    &::placeholder {
+      color: var(--stc-disabled-text-color);
+      opacity: 0.75;
+    }
+
+    /* Hover */
+    &:hover {
+      border-color: var(--stc-primary-color);
+    }
+
+    /* Focus */
+    &:focus {
+      border-color: var(--stc-primary-color);
+      box-shadow: var(--stc-box-shadow);
+    }
+
+    /* Disabled */
+    &:disabled {
+      background-color: var(--stc-disabled-bg-color);
+      border-color: var(--stc-secondary-color);
+      color: var(--stc-disabled-text-color);
+      cursor: not-allowed;
+    }
+
+    /* Handle sizes */
+    &.stc-input-size--small {
+      font-size: var(--stc-font-size-s);
+      padding: var(--stc-input--padding);
+    }
+
+    &.stc-input-size--large {
+      font-size: var(--stc-font-size-l);
+      padding: var(--stc-input--padding);
+    }
+  }
+}
