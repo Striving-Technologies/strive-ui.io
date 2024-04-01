@@ -264,7 +264,8 @@
     /* Handle sizes */
     &.stc-button-size--small {
       font-size: var(--stc-font-size-s);
-      padding: calc(0.5 * var(--stc-spacing-s)) calc(0.6 * var(--stc-spacing-m));
+      padding: calc(0.5 * var(--stc-button--padding-y))
+        calc(0.6 * var(--stc-button--padding-x));
     }
 
     &.stc-button-size--large {
