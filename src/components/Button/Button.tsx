@@ -51,7 +51,6 @@ const Button = ({
       >
         <Spinner
           size={size}
-          loadingPrefix="loading:"
           {...loadingIconProps}
         />
       </span>
@@ -73,6 +72,7 @@ const Button = ({
       aria-disabled={disabled || loading}
       {...rest}
     >
+      {loading && <span className="stc-off-screen">Loading:</span>}
       {showLeftLoader && renderLoadingIcon()}
       {showLeftIcon && Icon}
       {children}

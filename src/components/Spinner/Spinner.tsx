@@ -1,10 +1,6 @@
 import { SpinnerProps } from "./Spinner.type";
 
-const Spinner = ({
-  size = "medium",
-  spinSpeed = 5,
-  loadingPrefix = undefined,
-}: SpinnerProps) => {
+const Spinner = ({ size = "medium", spinSpeed = 5 }: SpinnerProps) => {
   return (
     <span
       className="stc-spinner"
@@ -17,7 +13,6 @@ const Spinner = ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
       >
-        {loadingPrefix && <title>{loadingPrefix}</title>}
         <circle
           cx="50"
           cy="50"
