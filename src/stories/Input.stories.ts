@@ -32,6 +32,10 @@ const meta = {
       options: ["small", "medium", "large"],
       defaultValue: "medium",
     },
+    borderless: {
+      control: "boolean",
+      description: "Remove border from input",
+    },
   },
 } satisfies Meta<typeof Input>;
 

@@ -6,10 +6,13 @@ export type InputType =
   | "password"
   | "email"
   | "tel"
-  | "url";
+  | "url"
+  | "search";
+
 export type InputSizeType = "small" | "medium" | "large";
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   type: InputType;
   size?: InputSizeType;
+  borderless?: boolean;
 };
