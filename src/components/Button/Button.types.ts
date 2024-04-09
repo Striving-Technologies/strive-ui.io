@@ -21,4 +21,5 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: ButtonSizeType;
   href?: string;
   anchorProps?: AnchorHTMLAttributes<HTMLAnchorElement>;
+  borderless?: boolean;
 };

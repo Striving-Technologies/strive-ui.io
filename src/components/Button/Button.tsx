@@ -19,6 +19,7 @@ const Button = ({
   onClick,
   href,
   anchorProps,
+  borderless,
   ...rest
 }: ButtonProps) => {
   const generatedClasses = classNames({
@@ -30,6 +31,7 @@ const Button = ({
     [`stc-button--loading`]: loading,
     [`stc-button__loader--${loadingIconPosition}`]: loadingIconPosition,
     [`stc-button__icon--${iconPosition}`]: iconPosition,
+    "stc-button--borderless": borderless,
   });
 
   const renderLoadingIcon = () => {

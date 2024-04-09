@@ -264,14 +264,14 @@
     /* Handle sizes */
     &.stc-button-size--small {
       font-size: var(--stc-font-size-s);
-      padding: calc(0.5 * var(--stc-button--padding-y))
-        calc(0.6 * var(--stc-button--padding-x));
+      padding: calc(0.8 * var(--stc-button--padding-y))
+        calc(0.8 * var(--stc-button--padding-x));
     }
 
     &.stc-button-size--large {
       font-size: var(--stc-font-size-l);
-      padding: calc(1.2 * var(--stc-button--padding-y))
-        calc(1.2 * var(--stc-button--padding-x));
+      padding: calc(1.4 * var(--stc-button--padding-y))
+        calc(1.4 * var(--stc-button--padding-x));
     }
 
     /* Handle shapes */
@@ -294,6 +294,7 @@
     /* Handle loading */
     .stc-button__loader {
       display: inline-flex;
+      line-height: 0;
       opacity: 0;
       width: 0;
       padding: 0;
@@ -345,6 +346,10 @@
     &:focus-visible {
       outline: 2px solid white;
       box-shadow: 0px 0px 0px 4px black;
+    }
+
+    &.stc-button--borderless {
+      border: none;
     }
   }
 }

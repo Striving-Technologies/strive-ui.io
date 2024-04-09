@@ -75,6 +75,10 @@ const meta = {
       description:
         "Additional AnchorHTML props to be passed to the <a> tag if the href prop is provided",
     },
+    borderless: {
+      control: "boolean",
+      description: "Whether the button has a border",
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -167,7 +171,7 @@ export const Loading: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: InfoIcon(),
+    icon: InfoIcon({ size: "medium" }),
     children: "Button with Icon",
   },
 } satisfies Story;
