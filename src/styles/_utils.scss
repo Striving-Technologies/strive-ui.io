@@ -1,3 +1,5 @@
+@import "icons";
+
 @mixin stc__utils {
   /* Utils */
   .stc-off-screen {
@@ -12,4 +14,13 @@
     white-space: nowrap;
     border-width: 0;
   }
+
+  .stc-keyboard-focusable {
+    &:focus-visible {
+      outline: 2px solid white;
+      box-shadow: 0px 0px 0px 4px black;
+    }
+  }
+
+  @include stc__icons;
 }

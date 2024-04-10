@@ -32,7 +32,7 @@
     margin: 0;
     padding: var(--stc-input--padding-y) var(--stc-input--padding-x);
     transition: var(--stc-transition);
-    outline: none;
+    outline: transparent;
     position: relative;
 
     &::placeholder {

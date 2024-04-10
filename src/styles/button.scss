@@ -342,12 +342,6 @@
       }
     }
 
-    /* Handle keyboard focus */
-    &:focus-visible {
-      outline: 2px solid white;
-      box-shadow: 0px 0px 0px 4px black;
-    }
-
     &.stc-button--borderless {
       border: none;
     }

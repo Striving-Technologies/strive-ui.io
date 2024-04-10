@@ -24,6 +24,7 @@ const Button = ({
 }: ButtonProps) => {
   const generatedClasses = classNames({
     "stc-button": true,
+    "stc-keyboard-focusable": true,
     [`stc-button-var--${variant}`]: variant,
     [`stc-button-size--${size}`]: size !== "medium" && size,
     [`stc-button-shape--${shape}`]: shape,
