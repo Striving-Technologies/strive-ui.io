@@ -1,0 +1,44 @@
+@mixin stc__search {
+  .stc-search {
+    display: flex;
+    align-items: center;
+
+    > .stc-input {
+      min-height: 100%;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      margin-right: -1px;
+
+      &:hover,
+      &:focus {
+        z-index: 2;
+      }
+    }
+
+    > .stc-button {
+      min-height: 100%;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+
+    &.stc-search--no-divider {
+      > .stc-input {
+        border-right: 1px solid transparent;
+
+        &:hover,
+        &:focus {
+          border-right: 1px solid var(--stc-primary-color);
+        }
+      }
+
+      > .stc-button {
+        border-left: 1px solid transparent;
+
+        &:hover,
+        &:focus {
+          border-left: 1px solid var(--stc-primary-color);
+        }
+      }
+    }
+  }
+}

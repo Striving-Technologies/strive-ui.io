@@ -2,6 +2,7 @@
 
 @import "button"; /* Path: src/styles/button.scss */
 @import "input"; /* Path: src/styles/input.scss */
+@import "search"; /* Path: src/styles/search.scss */
 @import "spinner"; /* Path: src/styles/spinner.scss */
 
 @mixin striveui {
@@ -11,5 +12,6 @@
   /* Components */
   @include stc__button;
   @include stc__input;
+  @include stc__search;
   @include stc__spinner;
 }
