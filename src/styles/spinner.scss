@@ -1,32 +1,27 @@
 @mixin stc__spinner {
   .stc-spinner {
-    margin-bottom: -0.1rem;
-
+    // margin-bottom: -0.1rem;
     svg {
       --stroke-width: 10;
-      --radius: 40;
+
       background: none;
       animation: spin 1s linear infinite;
-      width: var(--font-size);
-      height: auto;
+      width: var(--stc-font-size);
+      height: var(--stc-font-size);
     }
 
     /* Handle sizes */
     &[data-size="small"] {
-      width: calc(0.6 * var(--font-size));
-
       svg {
-        --stroke-width: 7;
-        --radius: 30;
+        --stroke-width: 10;
+        --radius: 32;
       }
     }
 
     &[data-size="large"] {
-      width: calc(1.4 * var(--font-size));
-
       svg {
-        --stroke-width: 13;
-        --radius: 55;
+        --stroke-width: 9;
+        --radius: 48;
       }
     }
 

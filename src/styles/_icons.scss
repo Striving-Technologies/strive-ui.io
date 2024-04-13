@@ -1,0 +1,20 @@
+@mixin stc__icons {
+  /* Icons */
+  .stc-icon {
+    display: inline-block;
+    line-height: 0;
+    fill: currentColor;
+    height: var(--stc-font-size);
+    width: var(--stc-font-size);
+
+    &.stc-icon--small {
+      height: calc(0.8 * var(--stc-font-size));
+      width: calc(0.8 * var(--stc-font-size));
+    }
+
+    &.stc-icon--large {
+      height: calc(1.4 * var(--stc-font-size));
+      width: calc(1.4 * var(--stc-font-size));
+    }
+  }
+}

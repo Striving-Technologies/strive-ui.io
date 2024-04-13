@@ -8,9 +8,8 @@ const Spinner = ({ size = "medium", spinSpeed = 5 }: SpinnerProps) => {
       data-size={size}
     >
       <svg
-        width="16"
-        height="16"
         xmlns="http://www.w3.org/2000/svg"
+        className={`stc-icon stc-icon--${size}`}
         viewBox="0 0 100 100"
       >
         <circle
@@ -21,7 +20,6 @@ const Spinner = ({ size = "medium", spinSpeed = 5 }: SpinnerProps) => {
           strokeWidth="var(--stroke-width)"
           r="40"
           strokeDasharray="164.93361431346415 56.97787143782138"
-          transform="rotate(159.821 50 50)"
         ></circle>
       </svg>
     </span>
