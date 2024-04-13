@@ -59,7 +59,18 @@
     &:hover {
       border-color: var(--stc-primary-color);
       color: var(--stc-primary-color);
+    }
+
+    /* Active */
+    &:active {
+      border-color: var(--stc-primary-color);
+      color: var(--stc-primary-color);
       box-shadow: var(--stc-box-shadow);
+    }
+
+    /* Focus */
+    &:focus {
+      border-color: var(--stc-primary-color);
     }
 
     /* Disabled */
