@@ -17,7 +17,7 @@
   ); // Danger color in the design system
   --stc-font-size: 1rem; // The default font size
   --stc-spacing: 0.5rem; // The default spacing (padding, margin, etc.)
-  --stc-transition: all 0.3s linear; // The default transition
+  --stc-transition: all 0.4s linear; // The default transition
   --stc-border-radius: 0.25rem; // The default border radius
   --stc-shadow: 0px 0px 4px 0px rgba(var(--stc-primary-color--values), 0.2); // Box shadow offset
   --stc-stroke-width: 10;
@@ -33,11 +33,11 @@
   ); // The default small font size
   --stc-font-size-m: var(--stc-font-size); // The default medium font size
   --stc-font-size-l: calc(
-    1.2 * var(--stc-font-size)
+    1.4 * var(--stc-font-size)
   ); // The default large font size
   --stc-spacing-s: calc(0.5 * var(--stc-spacing)); // The default small spacing
   --stc-spacing-m: var(--stc-spacing); // The default medium spacing
-  --stc-spacing-l: calc(1.5 * var(--stc-spacing)); // The default large spacing
+  --stc-spacing-l: calc(1.4 * var(--stc-spacing)); // The default large spacing
   --stc-box-shadow: var(--stc-shadow), var(--stc-shadow), var(--stc-shadow); // Box shadow configuration for all components
 }
 
