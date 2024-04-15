@@ -25,7 +25,12 @@ const Search = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSearch((e.target as HTMLFormElement).querySelector("input")?.value || "");
+
+    const input = (e.target as HTMLFormElement).querySelector("input");
+
+    if (input?.value) {
+      onSearch(input.value);
+    }
   };
 
   const SearchInput = (
