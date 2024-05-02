@@ -41,3 +41,45 @@ test("should call the onChange function when the input is changed", () => {
 
   expect(onChange).toHaveBeenCalled();
 });
+
+test("should render prefix and suffix elements", () => {
+  render(
+    <Input
+      type="text"
+      placeholder="Enter something..."
+      prefix="$"
+      suffix="kg"
+    />
+  );
+
+  const prefix = screen.getByText("$");
+  const suffix = screen.getByText("kg");
+
+  expect(prefix).toBeInTheDocument();
+  expect(suffix).toBeInTheDocument();
+});
+
+test("should focus the input when the prefix or suffix is clicked", () => {
+  render(
+    <Input
+      type="text"
+      placeholder="Enter something..."
+      prefix="$"
+      suffix="kg"
+    />
+  );
+
+  const input = screen.getByRole("textbox");
+  const prefix = screen.getByText("$");
+  const suffix = screen.getByText("kg");
+
+  expect(input).not.toHaveFocus();
+
+  fireEvent.click(prefix);
+
+  expect(input).toHaveFocus();
+
+  fireEvent.click(suffix);
+
+  expect(input).toHaveFocus();
+});

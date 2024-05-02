@@ -12,8 +12,8 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     type: {
-      control: "text",
-      description: "Input type. This can be:",
+      control: "radio",
+      description: "Input type.",
       options: ["text", "number", "password", "email", "tel", "url"],
       defaultValue: "text",
     },
@@ -28,13 +28,21 @@ const meta = {
     },
     size: {
       control: "radio",
-      description: "Input size. This can be:",
+      description: "Input size.",
       options: ["small", "medium", "large"],
       defaultValue: "medium",
     },
     borderless: {
       control: "boolean",
       description: "Remove border from input",
+    },
+    prefix: {
+      control: "text",
+      description: "Prefix element for input",
+    },
+    suffix: {
+      control: "text",
+      description: "Suffix element for input",
     },
   },
 } satisfies Meta<typeof Input>;
@@ -46,6 +54,6 @@ type Story = StoryObj<typeof Input>;
 export const Text: Story = {
   args: {
     type: "text",
-    placeholder: "Type something",
+    placeholder: "type something",
   },
 } satisfies Story;

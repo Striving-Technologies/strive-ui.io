@@ -15,4 +15,6 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   type: InputType;
   size?: InputSizeType;
   borderless?: boolean;
+  prefix?: string | JSX.Element;
+  suffix?: string | JSX.Element;
 };
