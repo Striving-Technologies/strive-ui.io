@@ -34,6 +34,7 @@
     transition: var(--stc-transition);
     outline: transparent;
     position: relative;
+    width: 100%;
 
     &::placeholder {
       color: var(--stc-disabled-text-color);
@@ -47,7 +48,8 @@
     }
 
     /* Focus */
-    &:focus {
+    &:focus,
+    &:focus-within {
       border-color: var(--stc-primary-color);
       box-shadow: var(--stc-box-shadow);
     }
@@ -83,6 +85,31 @@
 
     &.stc-input--borderless {
       border: none;
+    }
+
+    &.stc-input__wrapper {
+      display: flex;
+      gap: var(--stc-spacing-s);
+
+      input {
+        border: none;
+        padding: 0;
+        font-size: inherit;
+        background: none;
+        width: 100%;
+
+        &:focus {
+          box-shadow: none;
+          outline: none;
+        }
+      }
+
+      .stc-input__prefix,
+      .stc-input__suffix {
+        font-size: inherit;
+        padding: 0;
+        margin: 0;
+      }
     }
   }
 }
