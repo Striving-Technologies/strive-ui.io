@@ -83,3 +83,42 @@ test("should focus the input when the prefix or suffix is clicked", () => {
 
   expect(input).toHaveFocus();
 });
+
+// test currency input
+test("should render currency format correctly and return number value on change", () => {
+  const onChange = jest.fn();
+
+  render(
+    <Input.Currency
+      type="text"
+      placeholder="Enter something..."
+      onCurrencyChange={onChange}
+    />
+  );
+
+  const input = screen.getByRole("textbox");
+
+  expect(input).toBeInTheDocument();
+
+  expect(onChange).not.toHaveBeenCalled();
+
+  fireEvent.change(input, { target: { value: "1,000" } });
+
+  expect(onChange).toHaveBeenCalledWith(1000);
+
+  fireEvent.change(input, { target: { value: "1,000,000" } });
+
+  expect(onChange).toHaveBeenCalledWith(1000000);
+
+  fireEvent.change(input, { target: { value: "1,000.00" } });
+
+  expect(onChange).toHaveBeenCalledWith(1000);
+
+  fireEvent.change(input, { target: { value: "1,000.23" } });
+
+  expect(onChange).toHaveBeenCalledWith(1000.23);
+
+  fireEvent.change(input, { target: { value: "1,000,000.23" } });
+
+  expect(onChange).toHaveBeenCalledWith(1000000.23);
+});
