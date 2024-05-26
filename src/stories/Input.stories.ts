@@ -1,3 +1,4 @@
+import { useArgs } from "@storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Input } from "../components/Input";
@@ -49,6 +50,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof Input>;
+type CurrencyStory = StoryObj<typeof Input.Currency>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Text: Story = {
@@ -57,3 +59,45 @@ export const Text: Story = {
     placeholder: "type something",
   },
 } satisfies Story;
+
+export const Currency: CurrencyStory = {
+  args: {
+    // value: 1000,
+  },
+  argTypes: {
+    thousandSeparator: {
+      control: "text",
+      description: "Character to use as thousand separator",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "," },
+      },
+    },
+    decimalSeparator: {
+      control: "text",
+      description: "Character to use as decimal separator",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "." },
+      },
+    },
+    decimalPlaces: {
+      control: "number",
+      description: "Number of decimal places",
+      table: {
+        type: { summary: "number" },
+        defaultValue: { summary: 2 },
+      },
+    },
+  },
+  render: function CurrentInput(args) {
+    const [, setArgs] = useArgs();
+
+    const onValueChange = (value: number) => {
+      // Update the arg in Storybook
+      setArgs({ value });
+    };
+
+    return Input.Currency({ ...args, onCurrencyChange: onValueChange });
+  },
+} satisfies CurrencyStory;
