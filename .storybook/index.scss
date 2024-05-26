@@ -3,3 +3,7 @@
 @import "../src/styles/main.scss";
 
 @include striveui;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
