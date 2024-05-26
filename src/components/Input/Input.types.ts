@@ -17,4 +17,12 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   borderless?: boolean;
   prefix?: string | JSX.Element;
   suffix?: string | JSX.Element;
+  inputRef?: React.RefObject<HTMLInputElement>;
+};
+
+export type CurrencyInputProps = Omit<InputProps, "onChange, value"> & {
+  onCurrencyChange: (value: number) => void;
+  thousandSeparator?: string;
+  decimalSeparator?: string;
+  decimalPlaces?: number;
 };
