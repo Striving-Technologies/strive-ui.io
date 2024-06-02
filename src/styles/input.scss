@@ -71,6 +71,16 @@
       &::placeholder {
         font-size: var(--stc-font-size-s);
       }
+
+      .stc-input__step-buttons {
+        gap: 0px;
+        .stc-input__step-button {
+          height: 7px;
+          svg {
+            width: 0.5rem;
+          }
+        }
+      }
     }
 
     &.stc-input-size--large {
@@ -81,10 +91,23 @@
       &::placeholder {
         font-size: var(--stc-font-size-l);
       }
+
+      .stc-input__step-buttons svg {
+        width: 1rem;
+      }
     }
 
     &.stc-input--borderless {
       border: none;
+    }
+
+    /* Hide arrow icons on number input */
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      margin: 0;
     }
 
     &.stc-input__wrapper {
@@ -102,13 +125,61 @@
           box-shadow: none;
           outline: none;
         }
+
+        /* Handle hidden arrows on wrapped inputs */
+        &[type="number"]::-webkit-inner-spin-button,
+        &[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          margin: 0;
+        }
       }
 
       .stc-input__prefix,
-      .stc-input__suffix {
+      .stc-input__suffix,
+      .stc-input__step-buttons {
         font-size: inherit;
         padding: 0;
         margin: 0;
+      }
+    }
+
+    .stc-input__step-buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 1px;
+      align-items: center;
+      max-width: min-content;
+    }
+
+    .stc-input__step-button {
+      background: none;
+      border: none;
+      border-radius: var(--stc-border-radius);
+      color: var(--stc-text-color);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      height: 8px;
+      padding: 2px;
+      transition: var(--stc-transition);
+
+      &:hover {
+        background-color: var(--stc-disabled-bg-color);
+        color: var(--stc-white);
+      }
+
+      &:disabled {
+        background-color: var(--stc-disabled-bg-color);
+        color: var(--stc-disabled-text-color);
+        cursor: not-allowed;
+      }
+
+      svg {
+        width: 0.75rem;
+        height: auto;
       }
     }
   }

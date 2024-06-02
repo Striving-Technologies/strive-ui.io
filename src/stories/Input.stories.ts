@@ -45,6 +45,18 @@ const meta = {
       control: "text",
       description: "Suffix element for input",
     },
+    step: {
+      control: "number",
+      description: "Step value for number input",
+    },
+    max: {
+      control: "number",
+      description: "Maximum value for number input",
+    },
+    min: {
+      control: "number",
+      description: "Minimum value for number input",
+    },
   },
 } satisfies Meta<typeof Input>;
 
@@ -63,6 +75,7 @@ export const Text: Story = {
 export const Currency: CurrencyStory = {
   args: {
     // value: 1000,
+    placeholder: "Enter amount",
   },
   argTypes: {
     thousandSeparator: {
