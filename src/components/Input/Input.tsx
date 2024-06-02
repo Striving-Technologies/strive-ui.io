@@ -22,7 +22,8 @@ const Input = ({
   const inputContext = useContext(InputContext);
 
   const showStepButtons =
-    (rest.step && rest.type === "number") || inputContext.isCurrency;
+    (rest.step && rest.type === "number") ||
+    (inputContext.isCurrency && rest.step);
 
   const generatedClasses = classNames({
     "stc-input": true,
@@ -223,14 +224,19 @@ const CurrencyInput = ({
     }
 
     // Check if the value is within the min and max range
-    const minimum = rest.min || Number.NEGATIVE_INFINITY;
-    const maximum = rest.max || Number.POSITIVE_INFINITY;
+    const minimum =
+      rest.min !== undefined ? rest.min : Number.NEGATIVE_INFINITY;
+    const maximum =
+      rest.max !== undefined ? rest.max : Number.POSITIVE_INFINITY;
 
     // Return if the value is out of range
     if (valueAsNumber < minimum || valueAsNumber > maximum) return;
 
     // Update the formatted currency value
-    setValFormatted(`${formatCurrency(valueAsNumber - +step)}`);
+    setValFormatted(`${formatCurrency(valueAsNumber)}`);
+
+    // Call the onCurrencyChange callback
+    onCurrencyChange(valueAsNumber);
   };
 
   return (

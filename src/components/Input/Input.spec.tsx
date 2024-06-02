@@ -90,7 +90,6 @@ test("should render currency format correctly and return number value on change"
 
   render(
     <Input.Currency
-      type="text"
       placeholder="Enter something..."
       onCurrencyChange={onChange}
     />
@@ -121,4 +120,112 @@ test("should render currency format correctly and return number value on change"
   fireEvent.change(input, { target: { value: "1,000,000.23" } });
 
   expect(onChange).toHaveBeenCalledWith(1000000.23);
+});
+
+// test step button on input
+test("should render step buttons and update input value when clicked", () => {
+  render(
+    <Input
+      type="number"
+      placeholder="Enter something..."
+      step={5}
+    />
+  );
+
+  const input = screen.getByRole("spinbutton");
+  const buttons = screen.getAllByRole("button");
+
+  expect(buttons.length).toBe(2);
+
+  const [stepUp, stepDown] = buttons;
+
+  fireEvent.click(stepUp);
+
+  expect(input).toHaveValue(5);
+
+  fireEvent.click(stepUp);
+
+  expect(input).toHaveValue(10);
+
+  fireEvent.click(stepDown);
+
+  expect(input).toHaveValue(5);
+
+  fireEvent.click(stepDown);
+
+  expect(input).toHaveValue(0);
+});
+
+// test step button on currency input
+test("should update currency input value when step buttons are clicked", () => {
+  const onCurrencyChange = jest.fn();
+
+  render(
+    <Input.Currency
+      placeholder="Enter something..."
+      step={5}
+      onCurrencyChange={onCurrencyChange}
+    />
+  );
+
+  const input = screen.getByRole("textbox");
+  const buttons = screen.getAllByRole("button");
+
+  expect(buttons.length).toBe(2);
+
+  const [stepUp, stepDown] = buttons;
+
+  fireEvent.click(stepUp);
+
+  expect(input).toHaveValue("5");
+  expect(onCurrencyChange).toHaveBeenCalledWith(5);
+
+  fireEvent.click(stepUp);
+
+  expect(input).toHaveValue("10");
+  expect(onCurrencyChange).toHaveBeenCalledWith(10);
+
+  fireEvent.click(stepDown);
+
+  expect(input).toHaveValue("5");
+  expect(onCurrencyChange).toHaveBeenCalledWith(5);
+
+  fireEvent.click(stepDown);
+
+  expect(input).toHaveValue("0");
+  expect(onCurrencyChange).toHaveBeenCalledWith(0);
+});
+
+// test min and max values for number input
+test("should not allow input value to pass min and max values when stepped", () => {
+  const onCurrencyChange = jest.fn();
+
+  render(
+    <Input.Currency
+      placeholder="Enter something..."
+      step={1}
+      min={0}
+      max={10}
+      onCurrencyChange={onCurrencyChange}
+    />
+  );
+
+  const input = screen.getByRole("textbox");
+  const buttons = screen.getAllByRole("button");
+
+  const [stepUp, stepDown] = buttons;
+
+  // increment pass max value using loop
+  for (let i = 0; i < 20; i++) {
+    fireEvent.click(stepUp);
+  }
+
+  expect(input).toHaveValue("10");
+
+  // decrement pass min value using loop
+  for (let i = 0; i < 20; i++) {
+    fireEvent.click(stepDown);
+  }
+
+  expect(input).toHaveValue("0");
 });
