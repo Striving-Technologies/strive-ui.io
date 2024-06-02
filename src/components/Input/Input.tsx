@@ -1,6 +1,15 @@
 import classNames from "classnames";
-import { ChangeEvent, MouseEvent, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  createContext,
+  MouseEvent,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 import { flushSync } from "react-dom";
+import { CaretDownIcon } from "../../utils/icons/caretdown";
+import { CaretUpIcon } from "../../utils/icons/caretup";
 import { CurrencyInputProps, InputProps, InputType } from "./Input.types";
 
 const Input = ({
@@ -10,11 +19,16 @@ const Input = ({
   inputRef,
   ...rest
 }: InputProps) => {
+  const inputContext = useContext(InputContext);
+
+  const showStepButtons =
+    (rest.step && rest.type === "number") || inputContext.isCurrency;
+
   const generatedClasses = classNames({
     "stc-input": true,
     [`stc-input-size--${size}`]: size !== "medium" && size,
     "stc-input--borderless": borderless,
-    "stc-input__wrapper": rest.prefix || rest.suffix,
+    "stc-input__wrapper": rest.prefix || rest.suffix || showStepButtons,
   });
 
   let InputGenerated: JSX.Element = (
@@ -25,7 +39,7 @@ const Input = ({
     />
   );
 
-  if (rest.prefix || rest.suffix) {
+  if (rest.prefix || rest.suffix || showStepButtons) {
     const moveFocus = (e: MouseEvent<HTMLDivElement>) => {
       if (window.getSelection()?.toString() !== "") {
         return;
@@ -46,6 +60,7 @@ const Input = ({
           {...rest}
           {...(inputRef ? { ref: inputRef } : {})}
         />
+        {showStepButtons && <StepButtons />}
         {rest.suffix && <p className="stc-input__suffix">{rest.suffix}</p>}
       </div>
     );
@@ -53,6 +68,12 @@ const Input = ({
 
   return InputGenerated;
 };
+
+const InputContext = createContext({
+  isCurrency: false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  emitStep: (direction: "up" | "down") => {},
+});
 
 const CurrencyInput = ({
   thousandSeparator = ",",
@@ -133,16 +154,19 @@ const CurrencyInput = ({
 
     // Update the cursor position based on the change in commas
     if (newNumOfCommas > numberOfCommas.current) {
+      // If the number of commas has increased, move the cursor to the right
       position.current = {
         beforeStart: (beforeStart || 0) + 1,
         beforeEnd: (beforeEnd || 0) + 1,
       };
     } else if (newNumOfCommas < numberOfCommas.current) {
+      // If the number of commas has decreased, move the cursor to the left
       position.current = {
         beforeStart: (beforeStart || 0) - 1,
         beforeEnd: (beforeEnd || 0) - 1,
       };
     } else {
+      // If the number of commas has not changed, keep the cursor position
       position.current = {
         beforeStart: beforeStart || 0,
         beforeEnd: beforeEnd || 0,
@@ -151,12 +175,6 @@ const CurrencyInput = ({
 
     // Update the number of commas
     numberOfCommas.current = newNumOfCommas;
-
-    // Set the cursor position after the change
-    inputRef.current?.setSelectionRange(
-      position.current.beforeStart,
-      position.current.beforeEnd
-    );
 
     // Update the formatted currency value
     flushSync(() => {
@@ -169,6 +187,12 @@ const CurrencyInput = ({
       );
     });
 
+    // Set the cursor position after the change
+    inputRef.current?.setSelectionRange(
+      position.current.beforeStart,
+      position.current.beforeEnd
+    );
+
     // Call the onCurrencyChange callback
     onCurrencyChange(numberValue ? numberValue : 0);
   };
@@ -180,11 +204,106 @@ const CurrencyInput = ({
     inputRef: inputRef,
   };
 
+  // Handle the step buttons for currency input
+  const handleStep = (direction: "up" | "down") => {
+    const input = inputRef.current as HTMLInputElement;
+
+    if (!input) return;
+
+    const step = rest.step || 1;
+
+    // Convert the formatted currency to a number
+    let valueAsNumber = valFormatted ? convertToNumber(valFormatted) || 0 : 0;
+
+    // Increment or decrement the value based on the step
+    if (direction === "up") {
+      valueAsNumber += +step;
+    } else if (direction === "down") {
+      valueAsNumber -= +step;
+    }
+
+    // Check if the value is within the min and max range
+    const minimum = rest.min || Number.NEGATIVE_INFINITY;
+    const maximum = rest.max || Number.POSITIVE_INFINITY;
+
+    // Return if the value is out of range
+    if (valueAsNumber < minimum || valueAsNumber > maximum) return;
+
+    // Update the formatted currency value
+    setValFormatted(`${formatCurrency(valueAsNumber - +step)}`);
+  };
+
   return (
-    <Input
-      {...rest}
-      {...currencyProps}
-    />
+    <>
+      <InputContext.Provider value={{ isCurrency: true, emitStep: handleStep }}>
+        <Input
+          {...rest}
+          {...currencyProps}
+        />
+      </InputContext.Provider>
+    </>
+  );
+};
+
+const StepButtons = () => {
+  const inputContext = useContext(InputContext);
+
+  // Handle the increment and decrement buttons
+  const onIncrementClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const incrementButton = e.currentTarget as HTMLButtonElement;
+
+    const input = incrementButton
+      .closest(".stc-input__wrapper")
+      ?.querySelector("input") as HTMLInputElement;
+
+    // Return if the input is not found
+    if (!input) return;
+
+    if (!inputContext.isCurrency) {
+      // Increment the value if the input is not a currency input
+      input.stepUp();
+    } else {
+      // Call the step function for currency input
+      inputContext.emitStep("up");
+    }
+  };
+
+  const onDecrementClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const incrementButton = e.currentTarget as HTMLButtonElement;
+
+    const input = incrementButton
+      .closest(".stc-input__wrapper")
+      ?.querySelector("input") as HTMLInputElement;
+
+    // Return if the input is not found
+    if (!input) return;
+
+    if (!inputContext.isCurrency) {
+      // Decrement the value if the input is not a currency input
+      input.stepDown();
+    } else {
+      // Call the step function for currency input
+      inputContext.emitStep("down");
+    }
+  };
+
+  return (
+    <div className="stc-input__step-buttons">
+      <button
+        className="stc-input__step-button"
+        onClick={onIncrementClick}
+      >
+        <CaretUpIcon />
+      </button>
+      <button
+        className="stc-input__step-button"
+        onClick={onDecrementClick}
+      >
+        <CaretDownIcon />
+      </button>
+    </div>
   );
 };
 

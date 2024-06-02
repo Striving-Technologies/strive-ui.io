@@ -18,6 +18,8 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   prefix?: string | JSX.Element;
   suffix?: string | JSX.Element;
   inputRef?: React.RefObject<HTMLInputElement>;
+  min?: number;
+  max?: number;
 };
 
 export type CurrencyInputProps = Omit<InputProps, "onChange, value"> & {
