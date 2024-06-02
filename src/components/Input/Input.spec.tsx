@@ -194,6 +194,11 @@ test("should update currency input value when step buttons are clicked", () => {
 
   expect(input).toHaveValue("0");
   expect(onCurrencyChange).toHaveBeenCalledWith(0);
+
+  fireEvent.click(stepDown);
+
+  expect(input).toHaveValue("-5");
+  expect(onCurrencyChange).toHaveBeenCalledWith(-5);
 });
 
 // test min and max values for number input
@@ -228,4 +233,64 @@ test("should not allow input value to pass min and max values when stepped", () 
   }
 
   expect(input).toHaveValue("0");
+});
+
+// test step buttons don't show when step property is not provided
+test("should not render step buttons when step property is not provided", () => {
+  const { rerender } = render(
+    <Input
+      type="number"
+      placeholder="Enter something..."
+    />
+  );
+
+  const input = screen.getByRole("spinbutton");
+  const buttons = screen.queryAllByRole("button");
+
+  expect(input).toBeInTheDocument();
+  expect(buttons.length).toBe(0);
+
+  rerender(
+    <Input
+      type="number"
+      step={5}
+      placeholder="Enter something..."
+    />
+  );
+
+  const updatedInput = screen.getByRole("spinbutton");
+  const updatedButtons = screen.getAllByRole("button");
+
+  expect(updatedInput).toBeInTheDocument();
+  expect(updatedButtons.length).toBe(2);
+
+  // test for currency input
+  const onCurrencyChange = jest.fn();
+
+  rerender(
+    <Input.Currency
+      placeholder="Enter something..."
+      onCurrencyChange={onCurrencyChange}
+    />
+  );
+
+  const currencyInput = screen.getByRole("textbox");
+  const currencyButtons = screen.queryAllByRole("button");
+
+  expect(currencyInput).toBeInTheDocument();
+  expect(currencyButtons.length).toBe(0);
+
+  rerender(
+    <Input.Currency
+      placeholder="Enter something..."
+      step={5}
+      onCurrencyChange={onCurrencyChange}
+    />
+  );
+
+  const updatedCurrencyInput = screen.getByRole("textbox");
+  const updatedCurrencyButtons = screen.getAllByRole("button");
+
+  expect(updatedCurrencyInput).toBeInTheDocument();
+  expect(updatedCurrencyButtons.length).toBe(2);
 });

@@ -87,6 +87,13 @@ const CurrencyInput = ({
     "" as string | undefined
   );
 
+  const currencyRegex = new RegExp(
+    `[^0-9\\-${thousandSeparator}${decimalSeparator}]*`,
+    "g"
+  );
+
+  const numberOnlyRegex = new RegExp(`[^0-9]*`, "g");
+
   // Record the position of the cursor before and after the change
   const position = useRef({
     beforeStart: 0,
@@ -100,40 +107,54 @@ const CurrencyInput = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Format the currency value
-  const formatCurrency = (value: number) => {
-    const [integer, decimal] = `${value}`.split(decimalSeparator);
+  const formatCurrency = (value: string) => {
+    const isNegative = value[0] === "-";
+    const decimalLast = value[value.length - 1] === decimalSeparator;
+
+    const [integer, decimal] = value.split(".");
 
     // Add thousand separator
-    const formattedInteger = integer.replace(
-      /\B(?=(\d{3})+(?!\d))/g,
-      thousandSeparator
-    );
+    const formattedInteger = integer
+      .replaceAll(numberOnlyRegex, "")
+      .replace(/\B(?=(\d{3})+(?!\d))/g, thousandSeparator);
+    const formattedDecimal = decimal
+      ? decimal.replaceAll(numberOnlyRegex, "")
+      : "";
 
     // Add decimal separator
-    const formattedCurrency = `${formattedInteger}${
-      decimal ? decimalSeparator : ""
-    }${isNaN(+decimal) ? "" : decimal.slice(0, decimalPlaces)}`;
+    const formattedCurrency = `${isNegative ? "-" : ""}${formattedInteger}${
+      isNaN(parseInt(formattedDecimal))
+        ? `${decimalLast ? decimalSeparator : ""}`
+        : `.${formattedDecimal.slice(0, decimalPlaces)}`
+    }`;
 
     return formattedCurrency;
   };
 
   // Convert the formatted currency to a number
   const convertToNumber = (value: string) => {
+    const isNegative = value[0] === "-";
+    // Clean up the currency value
+    const [integer, decimal] = value
+      .replaceAll(thousandSeparator, "")
+      .replaceAll(decimalSeparator, ".")
+      .split(".");
+
     const numberValue = parseFloat(
-      value.replaceAll(thousandSeparator || ",", "")
+      `${isNegative ? "-" : ""}${integer.replaceAll(numberOnlyRegex, "")}${
+        decimal
+          ? `.${decimal
+              .replaceAll(numberOnlyRegex, "")
+              .slice(0, decimalPlaces)}`
+          : ""
+      }`
     );
 
-    return isNaN(numberValue) ? undefined : Number(numberValue.toPrecision());
+    return isNaN(numberValue) ? undefined : numberValue;
   };
 
   // Handle the currency input
   const handleCurrency = (event: ChangeEvent<HTMLInputElement>) => {
-    // Create a regex to match all non-numeric characters
-    const currencyRegex = new RegExp(
-      `[^0-9${thousandSeparator}${decimalSeparator}]*`,
-      "g"
-    );
-
     // Remove all non-numeric characters
     const value = event.target.value.replace(currencyRegex, "");
 
@@ -141,14 +162,11 @@ const CurrencyInput = ({
     const beforeStart = event.target.selectionStart;
     const beforeEnd = event.target.selectionEnd;
 
-    // Check if the last character is the decimal separator
-    const decimalSeparatorLast = value[value.length - 1] === decimalSeparator;
-
     // Convert the formatted currency to a number
     const numberValue = convertToNumber(value);
 
     // Format the currency value
-    const formattedCurrency = numberValue ? formatCurrency(numberValue) : "";
+    const formattedCurrency = value ? formatCurrency(value) : "";
 
     // Determine if the number of commas has increased or decreased
     const newNumOfCommas = formattedCurrency.split(",").length - 1;
@@ -176,16 +194,9 @@ const CurrencyInput = ({
 
     // Update the number of commas
     numberOfCommas.current = newNumOfCommas;
-
     // Update the formatted currency value
     flushSync(() => {
-      setValFormatted(
-        numberValue
-          ? `${formatCurrency(numberValue)}${
-              decimalSeparatorLast ? decimalSeparator : ""
-            }`
-          : ""
-      );
+      setValFormatted(formattedCurrency != "" ? `${formattedCurrency}` : "");
     });
 
     // Set the cursor position after the change
@@ -214,7 +225,10 @@ const CurrencyInput = ({
     const step = rest.step || 1;
 
     // Convert the formatted currency to a number
-    let valueAsNumber = valFormatted ? convertToNumber(valFormatted) || 0 : 0;
+    let valueAsNumber =
+      valFormatted && valFormatted != ""
+        ? convertToNumber(valFormatted) || 0
+        : 0;
 
     // Increment or decrement the value based on the step
     if (direction === "up") {
@@ -233,7 +247,7 @@ const CurrencyInput = ({
     if (valueAsNumber < minimum || valueAsNumber > maximum) return;
 
     // Update the formatted currency value
-    setValFormatted(`${formatCurrency(valueAsNumber)}`);
+    setValFormatted(`${formatCurrency(`${valueAsNumber}`)}`);
 
     // Call the onCurrencyChange callback
     onCurrencyChange(valueAsNumber);
@@ -302,12 +316,18 @@ const StepButtons = () => {
         onClick={onIncrementClick}
       >
         <CaretUpIcon />
+        <span className="stc-off-screen">
+          Increment button for number input
+        </span>
       </button>
       <button
         className="stc-input__step-button"
         onClick={onDecrementClick}
       >
         <CaretDownIcon />
+        <span className="stc-off-screen">
+          Decrement button for number input
+        </span>
       </button>
     </div>
   );
