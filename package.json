@@ -61,6 +61,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^24.0.0",
     "postcss": "^8.4.31",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
     "rollup": "^3.29.4",
     "rollup-plugin-postcss": "^4.0.2",
@@ -73,19 +75,14 @@
     "vite": "^4.4.11"
   },
   "dependencies": {
-    "@types/react": "^18.2.24",
-    "@types/react-dom": "^18.2.23",
-    "classnames": "^2.3.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "peerDependencies": {
     "@types/react": "^17.0.2 || ^18.0.0",
     "@types/react-dom": "^17.0.2 || ^18.0.0",
-    "classnames": "^2.3.2",
-    "react": "^17.0.2 || ^18.0.0",
-    "react-dom": "^17.0.2 || ^18.0.0",
+    "classnames": "^2.5.1",
     "tslib": "^2.3.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2 || ^18.0.0",
+    "react-dom": "^17.0.2 || ^18.0.0"
   },
   "eslintConfig": {
     "extends": [
