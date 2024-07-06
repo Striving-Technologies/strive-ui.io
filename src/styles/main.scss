@@ -1,9 +1,9 @@
-@import "utils"; /* Path: src/styles/_utils.scss */
+@import "_utils.scss"; /* Path: src/styles/_utils.scss */
 
-@import "button"; /* Path: src/styles/button.scss */
-@import "input"; /* Path: src/styles/input.scss */
-@import "search"; /* Path: src/styles/search.scss */
-@import "spinner"; /* Path: src/styles/spinner.scss */
+@import "button.scss"; /* Path: src/styles/button.scss */
+@import "input.scss"; /* Path: src/styles/input.scss */
+@import "search.scss"; /* Path: src/styles/search.scss */
+@import "spinner.scss"; /* Path: src/styles/spinner.scss */
 
 @mixin striveui {
   /* Utils */
