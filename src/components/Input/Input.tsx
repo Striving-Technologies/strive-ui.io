@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { MouseEvent, useContext } from "react";
-import { CaretDownIcon } from "../../utils/icons/caretdown";
-import { CaretUpIcon } from "../../utils/icons/caretup";
+import { CaretDownIcon, CaretUpIcon } from "../icons";
 import { InputContext } from "./_shared";
 import { CurrencyLogic } from "./Currency";
 import { InputProps } from "./Input.types";
