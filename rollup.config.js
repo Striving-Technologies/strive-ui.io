@@ -10,6 +10,7 @@ const extensions = [".ts", ".tsx"];
 const excludeExtensions = [".d.ts", ".test.tsx", ".spec.tsx"];
 
 const files = getFiles("./src/components", extensions, excludeExtensions);
+files.push(...getFiles("./src/utils", extensions, excludeExtensions));
 
 export default {
   input: ["./src/index.ts", ...files],

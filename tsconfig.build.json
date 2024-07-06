@@ -3,7 +3,6 @@
   "exclude": [
     "dist",
     "node_modules",
-    "src/utils",
     "src/setupTest.ts",
     "src/**/*.stories.tsx",
     "src/**/*.spec.tsx",

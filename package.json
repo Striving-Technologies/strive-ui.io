@@ -9,7 +9,6 @@
   "files": [
     "dist/**/*",
     "!dist/stories/**/*",
-    "!dist/utils/**/*",
     "!dist/setupTest.d.ts"
   ],
   "scripts": {
