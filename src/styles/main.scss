@@ -1,4 +1,5 @@
 @import "_utils.scss"; /* Path: src/styles/_utils.scss */
+@import "_icons.scss"; /* Path: src/styles/_icons.scss */
 
 @import "button.scss"; /* Path: src/styles/button.scss */
 @import "input.scss"; /* Path: src/styles/input.scss */
@@ -7,6 +8,7 @@
 
 @mixin striveui {
   /* Utils */
+  @include stc__icons;
   @include stc__utils;
 
   /* Components */

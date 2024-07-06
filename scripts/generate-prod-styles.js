@@ -26,7 +26,7 @@ const buildStyles = async () => {
   files.forEach((file) => {
     const fileName = file.split("/").slice(-1)[0];
 
-    if (fileName.startsWith("_")) return;
+    if (fileName === "_settings.scss") return;
 
     console.log("Minifying: ", fileName);
     const fileContent = fs.readFileSync(file, "utf-8");
