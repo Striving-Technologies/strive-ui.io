@@ -10,6 +10,7 @@ const Input = ({
   className,
   borderless,
   inputRef,
+  htmlSize,
   ...rest
 }: InputProps) => {
   const inputContext = useContext(InputContext);
@@ -28,6 +29,7 @@ const Input = ({
   let InputGenerated: JSX.Element = (
     <input
       className={`${generatedClasses}${className ? ` ${className}` : ""}`}
+      {...(htmlSize ? { size: htmlSize } : {})}
       {...rest}
       {...(inputRef ? { ref: inputRef } : {})}
     />

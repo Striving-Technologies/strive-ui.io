@@ -1,8 +1,8 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { SpinnerProps } from "../Spinner";
+import { DefaultComponentSize } from "../types";
 
 export type ButtonIconPositionType = "left" | "right";
-export type ButtonSizeType = "small" | "medium" | "large";
 export type ButtonVariantType = "primary" | "dashed" | "link" | "text";
 export type ButtonShapeType = "circle" | "pill";
 
@@ -18,7 +18,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   loadingIcon?: ReactNode;
   loadingIconPosition?: ButtonIconPositionType;
   loadingIconProps?: SpinnerProps;
-  size?: ButtonSizeType;
+  size?: DefaultComponentSize;
   href?: string;
   anchorProps?: AnchorHTMLAttributes<HTMLAnchorElement>;
   borderless?: boolean;

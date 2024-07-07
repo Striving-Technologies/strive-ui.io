@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import { DefaultComponentSize } from "../types";
 
 export type InputType =
   | "text"
@@ -9,11 +10,10 @@ export type InputType =
   | "url"
   | "search";
 
-export type InputSizeType = "small" | "medium" | "large";
-
-export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   type: InputType;
-  size?: InputSizeType;
+  size?: DefaultComponentSize;
+  htmlSize?: number;
   borderless?: boolean;
   prefix?: string | JSX.Element;
   suffix?: string | JSX.Element;

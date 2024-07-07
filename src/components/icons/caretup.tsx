@@ -1,4 +1,4 @@
-import { IconProps } from "./type";
+import { IconProps } from "./types";
 
 export const CaretUpIcon = ({ size = "medium" }: IconProps) => (
   <svg

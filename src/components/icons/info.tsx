@@ -1,4 +1,4 @@
-import { IconProps } from "./type";
+import { IconProps } from "./types";
 
 export const InfoIcon = ({ size = "medium" }: IconProps) => {
   return (
