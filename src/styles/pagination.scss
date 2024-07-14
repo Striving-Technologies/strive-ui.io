@@ -1,0 +1,53 @@
+@mixin stc__pagination {
+  .stc-pagination {
+    display: flex;
+    align-items: center;
+    row-gap: var(--stc-spacing);
+    list-style: none;
+
+    * {
+      margin-right: 0.2rem;
+    }
+
+    *:last-child {
+      margin-right: 0;
+    }
+
+    .stc-pagination-ellipsis {
+      font-size: var(--stc-font-size-m);
+    }
+
+    .stc-pagination-total {
+      font-size: var(--stc-font-size-m);
+
+      &.stc-pagination-total--right {
+        margin-left: 0.5rem;
+      }
+
+      &.stc-pagination-total--left {
+        margin-right: 0.5rem;
+      }
+    }
+
+    &.stc-pagination-size--small {
+      .stc-pagination-ellipsis,
+      .stc-pagination-total {
+        font-size: var(--stc-font-size-s);
+      }
+    }
+
+    &.stc-pagination-size--large {
+      .stc-pagination-ellipsis,
+      .stc-pagination-total {
+        font-size: var(--stc-font-size-l);
+      }
+    }
+
+    &.stc-pagination--disabled {
+      .stc-pagination-ellipsis,
+      .stc-pagination-total {
+        color: var(--stc-disabled-text-color);
+      }
+    }
+  }
+}
