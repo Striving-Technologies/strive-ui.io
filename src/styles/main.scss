@@ -3,6 +3,7 @@
 
 @import "button.scss"; /* Path: src/styles/button.scss */
 @import "input.scss"; /* Path: src/styles/input.scss */
+@import "pagination.scss"; /* Path: src/styles/pagination.scss */
 @import "search.scss"; /* Path: src/styles/search.scss */
 @import "spinner.scss"; /* Path: src/styles/spinner.scss */
 
@@ -14,6 +15,7 @@
   /* Components */
   @include stc__button;
   @include stc__input;
+  @include stc__pagination;
   @include stc__search;
   @include stc__spinner;
 }
