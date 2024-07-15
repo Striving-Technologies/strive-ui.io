@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Pagination } from "../components/Pagination";
 
 const meta = {
-  title: "Pagination",
+  title: "Example/Pagination",
   component: Pagination,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

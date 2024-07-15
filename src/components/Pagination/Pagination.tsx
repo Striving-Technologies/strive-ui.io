@@ -27,6 +27,7 @@ const Pagination = (props: PaginationProps) => {
     nextButtonContent,
     previousButtonContent,
     disabled,
+    ...rest
   } = props;
   // const pages = Array.from(
   //   { length: Math.ceil(totalItems / itemsPerPage) },
@@ -117,10 +118,14 @@ const Pagination = (props: PaginationProps) => {
   });
 
   const PageButton = ({ page }: { page: number }) => (
-    <li>
+    <li
+      aria-setsize={totalPageCount}
+      aria-posinset={page}
+    >
       <Button
         onClick={() => onChange(page)}
         variant={page === currentPage ? "link" : "text"}
+        aria-current={page === currentPage ? "page" : undefined}
         size={size}
         aria-label={`Go to page ${page}`}
         disabled={disabled}
@@ -132,61 +137,73 @@ const Pagination = (props: PaginationProps) => {
 
   const Ellipsis = () => (
     <li>
-      <span className="stc-pagination-ellipsis">•••</span>
+      <span
+        aria-label="Ellipsis"
+        className="stc-pagination-ellipsis"
+      >
+        •••
+      </span>
+    </li>
+  );
+
+  const TotalItems = () => (
+    <li>
+      <p
+        aria-description="Total items."
+        className={classNames({
+          "stc-pagination-total": true,
+          [`stc-pagination-total--${showTotalPosition}`]: true,
+        })}
+      >
+        {totalToShow}
+      </p>
     </li>
   );
 
   return (
-    <ul className={generatedClasses}>
-      {showTotalPosition === "left" && totalToShow && (
+    <nav
+      aria-label="Pagination"
+      {...rest}
+    >
+      <ul className={generatedClasses}>
+        {showTotalPosition === "left" && totalToShow && <TotalItems />}
         <li>
-          <p className="stc-pagination-total stc-pagination-total--left">
-            {totalToShow}
-          </p>
+          <Button
+            disabled={currentPage === 1 || disabled}
+            onClick={() => onChange(currentPage - 1)}
+            size={size}
+            variant={borderless ? "text" : undefined}
+            aria-label="Previous page"
+          >
+            {previousButtonContent ?? "Previous"}
+          </Button>
         </li>
-      )}
-      <li>
-        <Button
-          disabled={currentPage === 1 || disabled}
-          onClick={() => onChange(currentPage - 1)}
-          size={size}
-          variant={borderless ? "text" : undefined}
-          aria-label="Previous page"
-        >
-          {previousButtonContent ?? "Previous"}
-        </Button>
-      </li>
-      {pages.map((page, index) => {
-        if (page === DOTS) {
-          return <Ellipsis key={index} />;
-        }
+        {pages.map((page, index) => {
+          if (page === DOTS) {
+            return <Ellipsis key={index} />;
+          }
 
-        return (
-          <PageButton
-            key={index}
-            page={page as number}
-          />
-        );
-      })}
-      <li>
-        <Button
-          disabled={currentPage === pages[pages.length - 1] || disabled}
-          onClick={() => onChange(currentPage + 1)}
-          size={size}
-          variant={borderless ? "text" : undefined}
-          aria-label="Next page"
-        >
-          {nextButtonContent ?? "Next"}
-        </Button>
-      </li>
-      {showTotalPosition === "right" && totalToShow && (
+          return (
+            <PageButton
+              key={index}
+              page={page as number}
+            />
+          );
+        })}
         <li>
-          <p className="stc-pagination-total stc-pagination-total--right">
-            {totalToShow}
-          </p>
+          <Button
+            disabled={currentPage === pages[pages.length - 1] || disabled}
+            onClick={() => onChange(currentPage + 1)}
+            size={size}
+            variant={borderless ? "text" : undefined}
+            aria-label="Next page"
+          >
+            {nextButtonContent ?? "Next"}
+          </Button>
         </li>
-      )}
-    </ul>
+        {showTotalPosition === "right" && totalToShow && <TotalItems />}
+      </ul>
+    </nav>
   );
 };
 

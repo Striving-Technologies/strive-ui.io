@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 import { DefaultComponentSize } from "../types";
 
-export interface PaginationProps {
+export interface PaginationProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   totalItems: number;
   itemsPerPage: number;
   currentPage: number;
