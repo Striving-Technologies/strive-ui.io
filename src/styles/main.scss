@@ -5,6 +5,7 @@
 @import "input.scss"; /* Path: src/styles/input.scss */
 @import "pagination.scss"; /* Path: src/styles/pagination.scss */
 @import "search.scss"; /* Path: src/styles/search.scss */
+@import "select.scss"; /* Path: src/styles/selected.scss */
 @import "spinner.scss"; /* Path: src/styles/spinner.scss */
 
 @mixin striveui {
@@ -17,5 +18,6 @@
   @include stc__input;
   @include stc__pagination;
   @include stc__search;
+  @include stc__select;
   @include stc__spinner;
 }
