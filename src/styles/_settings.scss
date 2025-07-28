@@ -4,7 +4,10 @@
   --stc-primary-color: rgb(
     var(--stc-primary-color--values)
   ); // Primary color in the design system
-  --stc-secondary-color: #d7d7d7; // Secondary color in the design system
+  --stc-secondary-color--values: 215, 215, 215; // Secondary color RGB in the design system
+  --stc-secondary-color: rgb(
+    var(--stc-secondary-color--values)
+  ); // Secondary color in the design system
   --stc-text-color: #000; // The default text color
   --stc-text-color--primary: #fff; // The default text color for when over a primary background
   --stc-disabled-bg-color: #f0efef; // The default disabled background color
@@ -17,7 +20,7 @@
   ); // Danger color in the design system
   --stc-font-size: 1rem; // The default font size
   --stc-spacing: 0.5rem; // The default spacing (padding, margin, etc.)
-  --stc-transition: all 0.3s linear; // The default transition
+  --stc-transition: all 0.2s linear; // The default transition
   --stc-border-radius: 0.25rem; // The default border radius
   --stc-shadow: 0px 0px 4px 0px rgba(var(--stc-primary-color--values), 0.2); // Box shadow offset
   --stc-stroke-width: 10;
@@ -33,7 +36,7 @@
   ); // The default small font size
   --stc-font-size-m: var(--stc-font-size); // The default medium font size
   --stc-font-size-l: calc(
-    1.4 * var(--stc-font-size)
+    1.2 * var(--stc-font-size)
   ); // The default large font size
   --stc-spacing-s: calc(0.5 * var(--stc-spacing)); // The default small spacing
   --stc-spacing-m: var(--stc-spacing); // The default medium spacing
@@ -42,7 +45,7 @@
 }
 
 .stc--dark {
-  --stc-secondary-color: #525252; // Secondary color in the design system
+  --stc-secondary-color--values: 82, 82, 82; // Secondary color RGB in the design system
   --stc-text-color: #fff; // The default text color
   --stc-text-color--primary: #fff; // The default text color for when over a primary background
   --stc-disabled-bg-color: #f0efef; // The default disabled background color
