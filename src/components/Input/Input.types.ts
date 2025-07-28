@@ -22,10 +22,8 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   max?: number;
 };
 
-export type CurrencyInputProps = Omit<
-  InputProps,
-  "onChange" | "value" | "type"
-> & {
+export type CurrencyInputProps = Omit<InputProps, "onChange" | "type"> & {
+  value?: number;
   onCurrencyChange: (value: number) => void;
   thousandSeparator?: string;
   decimalSeparator?: string;
