@@ -1,25 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Input } from "../components/Input";
+import { CurrencyInput } from "../components/Input";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: "Components/Input",
-  component: Input,
+  title: "Components/Input - Currency",
+  component: CurrencyInput,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs", "input"],
   argTypes: {
-    type: {
-      control: "radio",
-      description: "Input type.",
-      options: ["text", "number", "password", "email", "tel", "url"],
-      defaultValue: "text",
-    },
     value: {
-      control: "text",
-      description: "Input value",
+      control: "number",
+      description: "Input value as a number",
+    },
+    onCurrencyChange: {
+      action: "onCurrencyChange",
+      description: "Callback when currency value changes",
+      defaultValue: "(value: number | undefined) => ",
+      control: {
+        type: "function",
+      },
     },
     placeholder: {
       control: "text",
@@ -57,15 +59,41 @@ const meta = {
       description: "Minimum value for number input",
     },
   },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof CurrencyInput>;
 
 export default meta;
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof CurrencyInput>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Text: Story = {
+export const Currency: Story = {
   args: {
-    type: "text",
-    placeholder: "Type something",
+    // value: 1000,
+    placeholder: "Enter amount",
+  },
+  argTypes: {
+    thousandSeparator: {
+      control: "text",
+      description: "Character to use as thousand separator",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "," },
+      },
+    },
+    decimalSeparator: {
+      control: "text",
+      description: "Character to use as decimal separator",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "." },
+      },
+    },
+    decimalPlaces: {
+      control: "number",
+      description: "Number of decimal places",
+      table: {
+        type: { summary: "number" },
+        defaultValue: { summary: 2 },
+      },
+    },
   },
 } satisfies Story;
