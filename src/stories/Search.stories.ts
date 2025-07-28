@@ -4,7 +4,7 @@ import { Search } from "../components/Search";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: "Example/Search",
+  title: "Components/Search",
   component: Search,
   parameters: {
     layout: "centered",
