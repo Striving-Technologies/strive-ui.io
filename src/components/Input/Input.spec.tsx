@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
+import CurrencyInput from "./Currency";
 import Input from "./Input";
 
 test("should render the input with the correctly", () => {
@@ -89,7 +90,7 @@ test("should render currency format correctly and return number value on change"
   const onChange = jest.fn();
 
   render(
-    <Input.Currency
+    <CurrencyInput
       placeholder="Enter something..."
       onCurrencyChange={onChange}
     />
@@ -161,7 +162,7 @@ test("should update currency input value when step buttons are clicked", () => {
   const onCurrencyChange = jest.fn();
 
   render(
-    <Input.Currency
+    <CurrencyInput
       placeholder="Enter something..."
       step={5}
       onCurrencyChange={onCurrencyChange}
@@ -206,7 +207,7 @@ test("should not allow input value to pass min and max values when stepped", () 
   const onCurrencyChange = jest.fn();
 
   render(
-    <Input.Currency
+    <CurrencyInput
       placeholder="Enter something..."
       step={1}
       min={0}
@@ -268,7 +269,7 @@ test("should not render step buttons when step property is not provided", () => 
   const onCurrencyChange = jest.fn();
 
   rerender(
-    <Input.Currency
+    <CurrencyInput
       placeholder="Enter something..."
       onCurrencyChange={onCurrencyChange}
     />
@@ -281,7 +282,7 @@ test("should not render step buttons when step property is not provided", () => 
   expect(currencyButtons.length).toBe(0);
 
   rerender(
-    <Input.Currency
+    <CurrencyInput
       placeholder="Enter something..."
       step={5}
       onCurrencyChange={onCurrencyChange}
