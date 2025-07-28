@@ -26,7 +26,15 @@
     "strive",
     "strive-ui",
     "striveui",
-    "ui"
+    "ui",
+    "ui components",
+    "ui library",
+    "component library",
+    "react",
+    "react ui",
+    "react components",
+    "react library",
+    "react component library"
   ],
   "author": "Striving Technologies",
   "license": "AGPL-3.0-or-later",
