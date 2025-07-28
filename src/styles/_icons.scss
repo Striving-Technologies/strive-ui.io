@@ -7,6 +7,11 @@
     height: var(--stc-font-size);
     width: var(--stc-font-size);
 
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
     &.stc-icon--small {
       height: calc(0.8 * var(--stc-font-size));
       width: calc(0.8 * var(--stc-font-size));
