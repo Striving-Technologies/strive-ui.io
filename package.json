@@ -105,12 +105,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Striving-Technologies/strive-ui.io.git"
+    "url": "https://github.com/stritech-oss/strive-ui.io.git"
   },
   "bugs": {
-    "url": "https://github.com/Striving-Technologies/strive-ui.io/issues"
+    "url": "https://github.com/stritech-oss/strive-ui.io/issues"
   },
-  "homepage": "https://github.com/Striving-Technologies/strive-ui.io",
+  "homepage": "https://github.com/stritech-oss/strive-ui.io",
   "publishConfig": {
     "access": "public"
   }

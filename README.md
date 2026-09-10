@@ -50,7 +50,7 @@ const App = () => (
 ##### Clone and run locally
 
 ```bash
-$ git clone git@github.com:Striving-Technologies/strive-ui.io.git
+$ git clone git@github.com:stritech-oss/strive-ui.io.git
 $ cd strive-ui.io
 $ npm install
 $ npm run storybook
